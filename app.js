@@ -5,6 +5,7 @@ const reviewerTopics = [
       {
         type: "Security principles",
         points: [
+          { term: "Defense in depth", detail: "Uses multiple layers of security instead of relying on one control. If one layer fails, another layer can still reduce or stop the attack." },
           { term: "Confidentiality", detail: "Keeps information hidden from unauthorized people. It works through access control, encryption, and proper data handling." },
           { term: "Integrity", detail: "Keeps data accurate and unchanged unless an authorized change happens. Hashes, permissions, and audit trails help protect integrity." },
           { term: "Availability", detail: "Keeps systems and data usable when needed. Redundancy, backups, patching, and DoS protection support availability." },
@@ -48,6 +49,9 @@ const reviewerTopics = [
           { term: "Brute force", detail: "Repeated guessing of passwords or keys. Lockouts, MFA, and strong passwords reduce this risk." },
           { term: "Man-in-the-middle", detail: "The attacker intercepts or alters traffic between two parties. TLS, certificates, and VPNs help reduce the risk." },
           { term: "Social engineering", detail: "Tricking people into revealing information or taking unsafe actions." },
+          { term: "Adware", detail: "Software that displays unwanted advertisements. It can slow systems, track behavior, or install with other unwanted programs." },
+          { term: "Rootkit", detail: "Malware that hides itself and may keep privileged access. It is dangerous because normal tools may not easily detect it." },
+          { term: "Polymorphic virus", detail: "Malware that changes its code or appearance to avoid signature-based detection while keeping the same harmful purpose." },
           { term: "Keylogger", detail: "Malware or hardware that records keystrokes, often to steal passwords." },
           { term: "Logic bomb", detail: "Malicious code that activates when a condition is met, such as a date or event." }
         ]
