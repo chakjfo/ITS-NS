@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ITS Network Security Reviewer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">ITS exam prep</p>
+      <h1>Network Security Reviewer</h1>
+    </div>
+    <div class="score-chip" id="bankCount">100+ questions</div>
+  </header>
+
+  <main class="app-shell">
+    <section class="hero-panel" aria-labelledby="overviewTitle">
+      <div class="hero-copy">
+        <h2 id="overviewTitle">Practice, review, then try another 50-item take.</h2>
+        <p>
+          Study core network security ideas for an ITS-style exam: threats,
+          controls, protocols, cryptography, firewalls, monitoring, incident
+          response, wireless, and secure operations.
+        </p>
+        <div class="actions">
+          <button class="primary" id="startQuiz">Start 50-item take</button>
+          <button id="showReviewer">Open reviewer</button>
+          <button id="showBank">Browse question bank</button>
+        </div>
+      </div>
+      <div class="network-visual" aria-label="Network security layers diagram">
+        <svg viewBox="0 0 520 300" role="img">
+          <title>Protected network path</title>
+          <desc>A cloud, firewall, switch, server, laptop, and monitoring node connected in a protected network.</desc>
+          <path class="link" d="M88 118 C148 84 187 84 238 118 S338 154 408 104" />
+          <path class="link thin" d="M252 154 L252 218 L386 218" />
+          <path class="link thin" d="M252 154 L134 218" />
+          <g class="node cloud"><ellipse cx="92" cy="118" rx="58" ry="34"/><text x="92" y="124">Internet</text></g>
+          <g class="node shield"><path d="M252 78 L309 102 V146 C309 186 282 209 252 222 C222 209 195 186 195 146 V102 Z"/><text x="252" y="139">FW</text></g>
+          <g class="node"><rect x="374" y="76" width="86" height="56" rx="8"/><text x="417" y="109">Server</text></g>
+          <g class="node"><rect x="90" y="200" width="88" height="52" rx="8"/><text x="134" y="232">Client</text></g>
+          <g class="node"><rect x="340" y="196" width="92" height="52" rx="8"/><text x="386" y="228">SIEM</text></g>
+          <circle class="pulse" cx="252" cy="146" r="76"/>
+        </svg>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="Study views">
+      <button class="tab active" data-view="reviewer">Reviewer</button>
+      <button class="tab" data-view="quiz">Questionnaire</button>
+      <button class="tab" data-view="bank">Question bank</button>
+    </nav>
+
+    <section class="view active" id="reviewer">
+      <div class="section-head">
+        <h2>High-yield reviewer</h2>
+        <p>Read these first, then answer the questionnaire. The explanations after each answer reinforce the same ideas.</p>
+      </div>
+      <div class="review-grid" id="reviewCards"></div>
+    </section>
+
+    <section class="view" id="quiz">
+      <div class="quiz-layout">
+        <aside class="quiz-status">
+          <h2>50-item take</h2>
+          <p id="quizState">Start a take to receive 50 randomized questions from the full bank.</p>
+          <div class="meter" aria-label="Quiz progress"><span id="progressBar"></span></div>
+          <div class="stats">
+            <div><strong id="currentNumber">0</strong><span>Current</span></div>
+            <div><strong id="score">0</strong><span>Score</span></div>
+            <div><strong id="remaining">50</strong><span>Left</span></div>
+          </div>
+          <button class="primary block" id="restartQuiz">New randomized take</button>
+        </aside>
+        <article class="question-card" id="questionCard">
+          <p class="question-meta">Questionnaire</p>
+          <h2 id="questionText">Ready when you are.</h2>
+          <div class="choices" id="choices"></div>
+          <div class="feedback" id="feedback" hidden></div>
+          <button class="primary" id="nextQuestion" hidden>Next question</button>
+          <div class="results" id="results" hidden></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" id="bank">
+      <div class="section-head">
+        <h2>Full question bank</h2>
+        <p>More than 100 items are included so every 50-item take feels different.</p>
+      </div>
+      <div class="filters">
+        <label>
+          Category
+          <select id="categoryFilter">
+            <option value="all">All categories</option>
+          </select>
+        </label>
+        <label>
+          Search
+          <input id="searchBank" type="search" placeholder="Search terms, protocols, controls">
+        </label>
+      </div>
+      <div class="bank-list" id="bankList"></div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
