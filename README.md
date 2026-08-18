@@ -2,6 +2,8 @@
 
 A static reviewer and questionnaire app for ITS-style network security exam practice.
 
+Primary syllabus source: [Certiport ITS Network Security objectives](https://certiport.filecamp.com/s/i/ITS_Network_Security)
+
 ## Features
 
 - High-yield reviewer cards for core network security topics
