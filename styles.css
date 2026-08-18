@@ -11,7 +11,34 @@
   --bad: #b42318;
   --soft: #e8f4f6;
   --warn-soft: #fff4d8;
+  --hero-start: #ffffff;
+  --hero-end: #f9fbfc;
+  --node-fill: #ffffff;
+  --meter-bg: #edf0f5;
+  --correct-bg: #ecfdf3;
+  --wrong-bg: #fff1f0;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #101418;
+  --ink: #eef3f7;
+  --muted: #aeb8c4;
+  --panel: #171d23;
+  --line: #303a45;
+  --accent: #4fb3c8;
+  --accent-2: #f0bf62;
+  --good: #62d69a;
+  --bad: #ff8a80;
+  --soft: #142b32;
+  --warn-soft: #2a2414;
+  --hero-start: #151b21;
+  --hero-end: #101418;
+  --node-fill: #202832;
+  --meter-bg: #26303a;
+  --correct-bg: #123223;
+  --wrong-bg: #371c1a;
 }
 
 * { box-sizing: border-box; }
@@ -59,6 +86,14 @@ button:disabled { cursor: not-allowed; opacity: 0.65; }
 .topbar h1, .topbar p { margin: 0; }
 .eyebrow, .question-meta { color: var(--accent-2); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 700; }
 
+.top-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  align-items: center;
+}
+
 .score-chip {
   padding: 0.5rem 0.8rem;
   border: 1px solid var(--line);
@@ -79,7 +114,7 @@ button:disabled { cursor: not-allowed; opacity: 0.65; }
   grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
   gap: 1.25rem;
   align-items: stretch;
-  background: linear-gradient(135deg, #ffffff 0%, #f9fbfc 100%);
+  background: linear-gradient(135deg, var(--hero-start) 0%, var(--hero-end) 100%);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 1.25rem;
@@ -120,17 +155,17 @@ button:disabled { cursor: not-allowed; opacity: 0.65; }
 
 .link {
   fill: none;
-  stroke: #176b87;
+  stroke: var(--accent);
   stroke-width: 7;
   stroke-linecap: round;
   opacity: 0.38;
 }
 
 .link.thin { stroke-width: 4; opacity: 0.32; }
-.node :is(rect, ellipse, path) { fill: #fff; stroke: #176b87; stroke-width: 3; }
+.node :is(rect, ellipse, path) { fill: var(--node-fill); stroke: var(--accent); stroke-width: 3; }
 .node text { text-anchor: middle; dominant-baseline: middle; fill: var(--ink); font-size: 18px; font-weight: 700; }
-.shield path { fill: #fff4d8; stroke: #8a5a00; }
-.pulse { fill: none; stroke: #8a5a00; stroke-width: 3; stroke-dasharray: 7 9; opacity: 0.75; }
+.shield path { fill: var(--warn-soft); stroke: var(--accent-2); }
+.pulse { fill: none; stroke: var(--accent-2); stroke-width: 3; stroke-dasharray: 7 9; opacity: 0.75; }
 
 .tabs {
   margin: 1rem 0;
@@ -190,7 +225,7 @@ button:disabled { cursor: not-allowed; opacity: 0.65; }
 
 .meter {
   height: 12px;
-  background: #edf0f5;
+  background: var(--meter-bg);
   border-radius: 999px;
   overflow: hidden;
   margin: 1rem 0;
@@ -233,12 +268,12 @@ button:disabled { cursor: not-allowed; opacity: 0.65; }
 
 .choice.correct {
   border-color: var(--good);
-  background: #ecfdf3;
+  background: var(--correct-bg);
 }
 
 .choice.wrong {
   border-color: var(--bad);
-  background: #fff1f0;
+  background: var(--wrong-bg);
 }
 
 .feedback {
@@ -320,12 +355,76 @@ button:disabled { cursor: not-allowed; opacity: 0.65; }
     display: block;
   }
 
+  .top-actions {
+    justify-content: stretch;
+  }
+
+  .top-actions button, .score-chip {
+    flex: 1 1 100%;
+  }
+
   .score-chip {
     display: inline-block;
     margin-top: 0.75rem;
+    text-align: center;
   }
 
   .actions button, .tabs button {
     flex: 1 1 100%;
+  }
+}
+
+@media print {
+  :root {
+    color-scheme: light;
+    --bg: #ffffff;
+    --ink: #111827;
+    --muted: #374151;
+    --panel: #ffffff;
+    --line: #cbd5e1;
+    --accent: #176b87;
+    --accent-2: #8a5a00;
+    --soft: #ffffff;
+    --warn-soft: #ffffff;
+  }
+
+  body {
+    background: #ffffff;
+  }
+
+  .topbar, .hero-panel, .tabs, #quiz, #bank {
+    display: none !important;
+  }
+
+  .app-shell {
+    max-width: none;
+    padding: 0;
+  }
+
+  #reviewer {
+    display: block !important;
+  }
+
+  .section-head {
+    display: block;
+    margin: 0 0 0.4in;
+  }
+
+  .section-head::before {
+    content: "ITS Network Security Reviewer";
+    display: block;
+    font-size: 24pt;
+    font-weight: 700;
+    margin-bottom: 0.12in;
+  }
+
+  .review-grid {
+    display: block;
+  }
+
+  .review-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.18in;
   }
 }

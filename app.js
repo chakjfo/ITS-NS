@@ -161,8 +161,17 @@ const choices = document.getElementById("choices");
 const feedback = document.getElementById("feedback");
 const nextQuestion = document.getElementById("nextQuestion");
 const results = document.getElementById("results");
+const themeToggle = document.getElementById("themeToggle");
+const downloadReviewer = document.getElementById("downloadReviewer");
 
 document.getElementById("bankCount").textContent = `${activeQuestions.length} likely exam questions`;
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  themeToggle.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+  themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
+  localStorage.setItem("itsNsTheme", theme);
+}
 
 function shuffle(items) {
   return [...items].sort(() => Math.random() - 0.5);
@@ -296,6 +305,14 @@ document.getElementById("startQuiz").addEventListener("click", startTake);
 document.getElementById("restartQuiz").addEventListener("click", startTake);
 document.getElementById("showReviewer").addEventListener("click", () => setView("reviewer"));
 document.getElementById("showBank").addEventListener("click", () => setView("bank"));
+themeToggle.addEventListener("click", () => {
+  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  applyTheme(nextTheme);
+});
+downloadReviewer.addEventListener("click", () => {
+  setView("reviewer");
+  window.print();
+});
 choices.addEventListener("click", (event) => {
   const button = event.target.closest(".choice");
   if (button) chooseAnswer(button);
@@ -310,4 +327,5 @@ searchBank.addEventListener("input", renderBank);
 renderReviewer();
 renderCategories();
 renderBank();
+applyTheme(localStorage.getItem("itsNsTheme") || "light");
 updateStatus();
