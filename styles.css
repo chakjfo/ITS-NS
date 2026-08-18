@@ -208,7 +208,18 @@ button:disabled { cursor: not-allowed; opacity: 0.65; }
 }
 
 .review-card h3 { margin: 0 0 0.5rem; }
-.review-card ul { margin: 0; padding-left: 1.2rem; color: var(--muted); line-height: 1.55; }
+.review-card h4 {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.92rem;
+}
+.review-card ul { margin: 0.35rem 0 0; padding-left: 1.2rem; color: var(--muted); line-height: 1.55; }
+
+.review-section {
+  border-top: 1px solid var(--line);
+  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+}
 
 .quiz-layout {
   display: grid;

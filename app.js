@@ -1,55 +1,128 @@
 const reviewerTopics = [
   {
     title: "1. Defense in Depth",
-    points: [
-      "Know CIA, non-repudiation, threat, risk, vulnerability, least privilege, and attack surface.",
-      "Physical security includes site security, computer security, removable media controls, and mantraps.",
-      "Policy controls include administrative controls and technical controls.",
-      "Attack types include malware, zero day, DoS, XSS, SQL injection, brute force, MITM, social engineering, keyloggers, and logic bombs.",
-      "Backup types include full, incremental, and differential."
+    sections: [
+      {
+        type: "Security principles",
+        points: ["Confidentiality", "Integrity", "Availability", "Non-repudiation", "Least privilege", "Attack surface"]
+      },
+      {
+        type: "Risk vocabulary",
+        points: ["Threat: possible cause of harm", "Vulnerability: weakness that can be exploited", "Risk: likelihood plus impact"]
+      },
+      {
+        type: "Physical security",
+        points: ["Site security", "Computer/device security", "Removable media control", "Mantrap"]
+      },
+      {
+        type: "Policy controls",
+        points: ["Administrative controls: policies, procedures, training", "Technical controls: firewall, encryption, authentication, antivirus"]
+      },
+      {
+        type: "Attack types",
+        points: ["Malware", "Zero day", "DoS", "SQL injection", "XSS", "Brute force", "Man-in-the-middle", "Social engineering", "Keylogger", "Logic bomb"]
+      },
+      {
+        type: "Backup types",
+        points: ["Full: copies everything selected", "Differential: changes since last full backup", "Incremental: changes since last backup of any type"]
+      }
     ]
   },
   {
     title: "2. Operating System Security",
-    points: [
-      "Protection topics include service separation, hardening, patching, attack-surface reduction, UAC, secure DNS updates, and software restriction policies.",
-      "Authentication includes MFA, password policy, remote access, Run As, sudo, local/domain groups, and Kerberos.",
-      "Permission topics include file, folder, share, inheritance, ownership, delegation, and mixed group permissions.",
-      "Auditing supports non-repudiation through audit policies and log review.",
-      "Encryption includes file/folder encryption, drive encryption, TPM, VPN encryption, public/private keys, certificates, and BitLocker."
+    sections: [
+      {
+        type: "Protection and hardening",
+        points: ["Service separation", "System hardening", "Patch management", "Attack-surface reduction", "User Account Control", "Secure DNS updates", "Software restriction policies"]
+      },
+      {
+        type: "Authentication",
+        points: ["Multifactor authentication", "Password policy", "Remote access authentication", "Run As", "sudo", "Local groups", "Domain groups", "Kerberos"]
+      },
+      {
+        type: "Permissions",
+        points: ["File permissions", "Folder permissions", "Share permissions", "Inheritance", "Ownership", "Delegation", "Mixed group permissions"]
+      },
+      {
+        type: "Auditing",
+        points: ["Audit policy", "Log review", "Choosing which events to audit", "Non-repudiation through recorded activity"]
+      },
+      {
+        type: "Encryption",
+        points: ["File/folder encryption", "Drive encryption", "BitLocker", "TPM", "VPN encryption", "Public/private keys", "Certificates"]
+      }
     ]
   },
   {
     title: "3. Network Device Security",
-    points: [
-      "Wireless security covers encryption strength, SSIDs, MAC filtering, and default out-of-box configuration.",
-      "Protection devices include hardware/software firewalls, host/network firewalls, stateful/stateless inspection, IDS, IPS, SIEM, content filtering, and blacklisting/whitelisting.",
-      "Isolation methods include routing, honeynet, DMZ, NAT/PAT, VPN, IPsec, air gaps, DirectAccess, and VLANs.",
-      "Protocol security topics include tunneling, DNSSEC, sniffing, and well-known ports such as FTP, HTTP, HTTPS, DNS, RDP, Telnet, SSH, LDAP, LDAPS, SNMP, SMTP, IMAP, and SFTP."
+    sections: [
+      {
+        type: "Wireless security",
+        points: ["Encryption strength: avoid WEP, prefer WPA2/WPA3", "SSID: wireless network name", "MAC filtering", "Change default out-of-box settings"]
+      },
+      {
+        type: "Protection devices",
+        points: ["Hardware firewall", "Software firewall", "Host firewall", "Network firewall", "Stateful inspection", "Stateless inspection", "IDS", "IPS", "SIEM"]
+      },
+      {
+        type: "Filtering controls",
+        points: ["Content filtering", "Blacklisting: block known bad items", "Whitelisting: allow only approved items"]
+      },
+      {
+        type: "Network isolation",
+        points: ["Routing", "Honeynet", "DMZ/perimeter network", "NAT/PAT", "VPN", "IPsec", "Air gap", "DirectAccess", "VLAN"]
+      },
+      {
+        type: "Protocol security",
+        points: ["Tunneling", "DNSSEC", "Network sniffing", "Use SSH instead of Telnet", "Use HTTPS instead of HTTP for sensitive web traffic"]
+      },
+      {
+        type: "Ports to memorize",
+        points: ["FTP 21", "SSH 22", "Telnet 23", "SMTP 25", "DNS 53", "HTTP 80", "HTTPS 443", "LDAP 389", "LDAPS 636", "SNMP 161", "RDP 3389"]
+      }
     ]
   },
   {
     title: "4. Secure Computing",
-    points: [
-      "Email protection includes antispam, spoofing, phishing, pharming, client protection, and user training.",
-      "Browser security includes browser settings, cache management, and private browsing.",
-      "Anti-malware and antivirus tasks include installing, uninstalling, reinstalling, updating, remediation, scheduled scans, and alert investigation."
+    sections: [
+      {
+        type: "Email protection",
+        points: ["Antispam", "Spoofing", "Phishing", "Pharming", "Email client protection", "User training"]
+      },
+      {
+        type: "Browser security",
+        points: ["Security settings", "Cache management", "Private browsing", "Do not trust private mode as full anonymity"]
+      },
+      {
+        type: "Anti-malware tasks",
+        points: ["Install protection", "Uninstall/reinstall when needed", "Update signatures and software", "Schedule scans", "Investigate alerts", "Remediate detected malware"]
+      }
     ]
   },
   {
     title: "Exam Readiness",
-    points: [
-      "Candidates are expected to have hands-on experience with client operating systems, security apps, firewalls, devices, and network ports.",
-      "The official objective-domain sheet recommends at least 150 hours of instruction or hands-on network security experience.",
-      "Certiport-linked exam information lists 50 minutes, 35-50 questions, and a 700/1000 cut score."
+    sections: [
+      {
+        type: "Expected experience",
+        points: ["Client operating systems", "Security applications", "Firewalls", "Network devices", "Common network ports"]
+      },
+      {
+        type: "Exam shape",
+        points: ["Recommended preparation: at least 150 hours of instruction or hands-on experience", "Time: 50 minutes", "Questions: 35-50", "Passing score: 700/1000"]
+      }
     ]
   },
   {
     title: "Study Strategy",
-    points: [
-      "Use the reviewer for concepts, then take a 50-item randomized questionnaire.",
-      "Read every explanation, especially for missed answers.",
-      "Retake until your score is consistently above the passing level, not just once by luck."
+    sections: [
+      {
+        type: "How to use this reviewer",
+        points: ["Study one type at a time", "Use the question bank after each domain", "Read the explanation for every missed item"]
+      },
+      {
+        type: "When to retake",
+        points: ["Retake until your score is consistently above passing level", "Do not rely on one lucky high score", "Review weak categories before starting another 50-item take"]
+      }
     ]
   }
 ];
@@ -186,7 +259,12 @@ function renderReviewer() {
   reviewCards.innerHTML = reviewerTopics.map((topic) => `
     <article class="review-card">
       <h3>${topic.title}</h3>
-      <ul>${topic.points.map((point) => `<li>${point}</li>`).join("")}</ul>
+      ${(topic.sections || [{ type: "Key points", points: topic.points }]).map((section) => `
+        <div class="review-section">
+          <h4>${section.type}</h4>
+          <ul>${section.points.map((point) => `<li>${point}</li>`).join("")}</ul>
+        </div>
+      `).join("")}
     </article>
   `).join("");
 }
