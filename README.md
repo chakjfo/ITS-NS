@@ -11,7 +11,7 @@ A static reviewer and questionnaire app for ITS-style network security exam prac
 - Final score plus missed-item review
 - Searchable and filterable full question bank
 - Dark mode with saved preference
-- Reviewer PDF export through the browser print/save dialog
+- Searchable text-based reviewer PDF export through the browser print/save dialog
 
 ## Run
 

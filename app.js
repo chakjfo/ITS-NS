@@ -435,6 +435,125 @@ function renderReviewer() {
   `).join("");
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function buildReviewerPrintDocument() {
+  const content = reviewerTopics.map((topic) => `
+    <section>
+      <h2>${escapeHtml(topic.title)}</h2>
+      ${topic.sections.map((section) => `
+        <article>
+          <h3>${escapeHtml(section.type)}</h3>
+          <dl>
+            ${section.points.map((point) => {
+              const term = typeof point === "string" ? point : point.term;
+              const detail = typeof point === "string" ? "" : point.detail;
+              return `
+                <dt>${escapeHtml(term)}</dt>
+                ${detail ? `<dd>${escapeHtml(detail)}</dd>` : ""}
+              `;
+            }).join("")}
+          </dl>
+        </article>
+      `).join("")}
+    </section>
+  `).join("");
+
+  return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ITS Network Security Reviewer</title>
+  <style>
+    body {
+      color: #111827;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
+      margin: 32px;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin: 0 0 8px;
+    }
+
+    .subtitle {
+      color: #4b5563;
+      margin: 0 0 24px;
+    }
+
+    h2 {
+      border-bottom: 2px solid #176b87;
+      color: #0f3f4d;
+      font-size: 20px;
+      margin: 28px 0 14px;
+      padding-bottom: 6px;
+    }
+
+    h3 {
+      color: #8a5a00;
+      font-size: 15px;
+      margin: 18px 0 8px;
+    }
+
+    article {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    dl {
+      margin: 0;
+    }
+
+    dt {
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    dd {
+      color: #374151;
+      margin: 3px 0 0 18px;
+    }
+
+    @media print {
+      body {
+        margin: 0.45in;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>ITS Network Security Reviewer</h1>
+  <p class="subtitle">Searchable text study reviewer with definitions and short explanations.</p>
+  ${content}
+</body>
+</html>`;
+}
+
+function downloadSearchableReviewerPdf() {
+  const printWindow = window.open("", "_blank");
+  if (!printWindow) {
+    setView("reviewer");
+    window.print();
+    return;
+  }
+
+  printWindow.document.open();
+  printWindow.document.write(buildReviewerPrintDocument());
+  printWindow.document.close();
+  printWindow.focus();
+  setTimeout(() => {
+    printWindow.print();
+  }, 250);
+}
+
 function renderCategories() {
   const categories = [...new Set(activeQuestions.map((item) => item.c))].sort();
   categoryFilter.innerHTML += categories.map((category) => `<option value="${category}">${category}</option>`).join("");
@@ -584,8 +703,7 @@ themeToggle.addEventListener("click", () => {
   applyTheme(nextTheme);
 });
 downloadReviewer.addEventListener("click", () => {
-  setView("reviewer");
-  window.print();
+  downloadSearchableReviewerPdf();
 });
 choices.addEventListener("click", (event) => {
   const button = event.target.closest(".choice");
