@@ -5,7 +5,7 @@ A static reviewer and questionnaire app for ITS-style network security exam prac
 ## Features
 
 - High-yield reviewer cards for core network security topics
-- 160+ question bank aligned to the ITS Network Security objective domains
+- Focused likely-exam question bank aligned to the ITS Network Security objective domains
 - Randomized 50-item questionnaire per take
 - Immediate feedback and explanations after every answer
 - Final score plus missed-item review
