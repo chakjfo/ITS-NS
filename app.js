@@ -4,27 +4,61 @@ const reviewerTopics = [
     sections: [
       {
         type: "Security principles",
-        points: ["Confidentiality", "Integrity", "Availability", "Non-repudiation", "Least privilege", "Attack surface"]
+        points: [
+          { term: "Confidentiality", detail: "Keeps information hidden from unauthorized people. It works through access control, encryption, and proper data handling." },
+          { term: "Integrity", detail: "Keeps data accurate and unchanged unless an authorized change happens. Hashes, permissions, and audit trails help protect integrity." },
+          { term: "Availability", detail: "Keeps systems and data usable when needed. Redundancy, backups, patching, and DoS protection support availability." },
+          { term: "Non-repudiation", detail: "Provides proof that a user or system performed an action. Digital signatures and logs help prevent someone from denying what they did." },
+          { term: "Least privilege", detail: "Gives users only the access needed for their job. If an account is misused, the damage is limited." },
+          { term: "Attack surface", detail: "All possible places an attacker can target. Reducing unused services, open ports, and excessive permissions reduces the attack surface." }
+        ]
       },
       {
         type: "Risk vocabulary",
-        points: ["Threat: possible cause of harm", "Vulnerability: weakness that can be exploited", "Risk: likelihood plus impact"]
+        points: [
+          { term: "Threat", detail: "A possible cause of harm, such as malware, a careless user, a power outage, or an attacker." },
+          { term: "Vulnerability", detail: "A weakness that a threat can exploit, such as an unpatched system, weak password, or open management port." },
+          { term: "Risk", detail: "The chance that a threat will exploit a vulnerability and cause harm. It is usually judged by likelihood and impact." }
+        ]
       },
       {
         type: "Physical security",
-        points: ["Site security", "Computer/device security", "Removable media control", "Mantrap"]
+        points: [
+          { term: "Site security", detail: "Protects the building or room where systems are located using locks, guards, cameras, and access badges." },
+          { term: "Computer/device security", detail: "Protects endpoints and equipment from theft, tampering, and unauthorized use." },
+          { term: "Removable media control", detail: "Controls USB drives and external storage because they can leak data or introduce malware." },
+          { term: "Mantrap", detail: "A controlled entrance with two interlocking doors. It slows entry and helps verify one person at a time." }
+        ]
       },
       {
         type: "Policy controls",
-        points: ["Administrative controls: policies, procedures, training", "Technical controls: firewall, encryption, authentication, antivirus"]
+        points: [
+          { term: "Administrative controls", detail: "Rules and processes such as policies, procedures, standards, and user training." },
+          { term: "Technical controls", detail: "Security enforced by technology, such as firewalls, encryption, antivirus, MFA, and access control lists." }
+        ]
       },
       {
         type: "Attack types",
-        points: ["Malware", "Zero day", "DoS", "SQL injection", "XSS", "Brute force", "Man-in-the-middle", "Social engineering", "Keylogger", "Logic bomb"]
+        points: [
+          { term: "Malware", detail: "Malicious software designed to damage systems, steal data, spy on users, or gain unauthorized access." },
+          { term: "Zero day", detail: "An attack or vulnerability that is not yet publicly patched. Defenders may have little warning." },
+          { term: "DoS", detail: "Denial of service makes a system unavailable by overwhelming it or abusing a weakness." },
+          { term: "SQL injection", detail: "An attacker inserts database commands into input fields. Safe coding and parameterized queries help prevent it." },
+          { term: "XSS", detail: "Cross-site scripting injects malicious scripts into web pages so they run in another user's browser." },
+          { term: "Brute force", detail: "Repeated guessing of passwords or keys. Lockouts, MFA, and strong passwords reduce this risk." },
+          { term: "Man-in-the-middle", detail: "The attacker intercepts or alters traffic between two parties. TLS, certificates, and VPNs help reduce the risk." },
+          { term: "Social engineering", detail: "Tricking people into revealing information or taking unsafe actions." },
+          { term: "Keylogger", detail: "Malware or hardware that records keystrokes, often to steal passwords." },
+          { term: "Logic bomb", detail: "Malicious code that activates when a condition is met, such as a date or event." }
+        ]
       },
       {
         type: "Backup types",
-        points: ["Full: copies everything selected", "Differential: changes since last full backup", "Incremental: changes since last backup of any type"]
+        points: [
+          { term: "Full backup", detail: "Copies all selected data. It is easiest to restore from but takes more time and storage." },
+          { term: "Differential backup", detail: "Copies changes since the last full backup. Restore usually needs the full backup plus the latest differential." },
+          { term: "Incremental backup", detail: "Copies changes since the last backup of any type. It saves space but may require several backup sets to restore." }
+        ]
       }
     ]
   },
@@ -33,23 +67,61 @@ const reviewerTopics = [
     sections: [
       {
         type: "Protection and hardening",
-        points: ["Service separation", "System hardening", "Patch management", "Attack-surface reduction", "User Account Control", "Secure DNS updates", "Software restriction policies"]
+        points: [
+          { term: "Service separation", detail: "Runs services separately so one compromised service does not easily affect others." },
+          { term: "System hardening", detail: "Configures systems securely by disabling unused features, limiting permissions, and applying secure baselines." },
+          { term: "Patch management", detail: "Keeps software updated so known vulnerabilities are fixed before attackers exploit them." },
+          { term: "Attack-surface reduction", detail: "Removes unnecessary ports, services, software, and permissions." },
+          { term: "User Account Control", detail: "Windows feature that prompts before elevated actions to reduce silent administrative changes." },
+          { term: "Secure DNS updates", detail: "Allows only authorized systems to update DNS records, reducing spoofed or incorrect records." },
+          { term: "Software restriction policies", detail: "Limit what programs can run, helping block unauthorized or malicious software." }
+        ]
       },
       {
         type: "Authentication",
-        points: ["Multifactor authentication", "Password policy", "Remote access authentication", "Run As", "sudo", "Local groups", "Domain groups", "Kerberos"]
+        points: [
+          { term: "Multifactor authentication", detail: "Uses more than one factor, such as password plus phone approval, so stolen passwords are less useful." },
+          { term: "Password policy", detail: "Sets rules for length, complexity, lockout, and reuse to reduce weak passwords." },
+          { term: "Remote access authentication", detail: "Verifies users before allowing access from outside or remote networks." },
+          { term: "Run As", detail: "Windows method to run a program using another account, often for admin tasks." },
+          { term: "sudo", detail: "Linux/macOS command that allows permitted users to run specific commands with elevated privilege." },
+          { term: "Local groups", detail: "Groups that control permissions on one computer." },
+          { term: "Domain groups", detail: "Centralized groups used across domain-joined systems." },
+          { term: "Kerberos", detail: "Ticket-based authentication protocol. Users receive tickets instead of sending passwords repeatedly." }
+        ]
       },
       {
         type: "Permissions",
-        points: ["File permissions", "Folder permissions", "Share permissions", "Inheritance", "Ownership", "Delegation", "Mixed group permissions"]
+        points: [
+          { term: "File permissions", detail: "Control who can read, write, modify, or execute a file." },
+          { term: "Folder permissions", detail: "Control access to folders and often apply to files inside them." },
+          { term: "Share permissions", detail: "Control access over a network share. They combine with file system permissions." },
+          { term: "Inheritance", detail: "Child files or folders receive permissions from a parent folder unless inheritance is blocked." },
+          { term: "Ownership", detail: "The owner can usually change permissions, depending on system rules." },
+          { term: "Delegation", detail: "Assigns limited administrative tasks to another user or group without giving full admin rights." },
+          { term: "Mixed group permissions", detail: "When users belong to multiple groups, effective access depends on the combined permissions and denies." }
+        ]
       },
       {
         type: "Auditing",
-        points: ["Audit policy", "Log review", "Choosing which events to audit", "Non-repudiation through recorded activity"]
+        points: [
+          { term: "Audit policy", detail: "Defines which security events are recorded, such as logons, file access, or privilege use." },
+          { term: "Log review", detail: "Checking recorded events to find suspicious activity, errors, or policy violations." },
+          { term: "Event selection", detail: "Auditing too little misses attacks; auditing too much creates noise. Choose events that matter." },
+          { term: "Recorded activity", detail: "Logs help prove what happened, when it happened, and which account was involved." }
+        ]
       },
       {
         type: "Encryption",
-        points: ["File/folder encryption", "Drive encryption", "BitLocker", "TPM", "VPN encryption", "Public/private keys", "Certificates"]
+        points: [
+          { term: "File/folder encryption", detail: "Protects selected stored files or folders so unauthorized users cannot read them." },
+          { term: "Drive encryption", detail: "Encrypts an entire disk or volume, protecting data if a device is lost or stolen." },
+          { term: "BitLocker", detail: "Microsoft drive encryption feature commonly used with Windows." },
+          { term: "TPM", detail: "Trusted Platform Module stores or protects cryptographic keys in hardware." },
+          { term: "VPN encryption", detail: "Protects traffic through an encrypted tunnel over an untrusted network." },
+          { term: "Public/private keys", detail: "Asymmetric key pair where the public key can be shared and the private key must be protected." },
+          { term: "Certificates", detail: "Bind a public key to an identity and help systems trust secure connections." }
+        ]
       }
     ]
   },
@@ -58,27 +130,74 @@ const reviewerTopics = [
     sections: [
       {
         type: "Wireless security",
-        points: ["Encryption strength: avoid WEP, prefer WPA2/WPA3", "SSID: wireless network name", "MAC filtering", "Change default out-of-box settings"]
+        points: [
+          { term: "Encryption strength", detail: "WEP is weak and should be avoided. WPA2 or WPA3 provides stronger Wi-Fi protection." },
+          { term: "SSID", detail: "The wireless network name clients see when connecting." },
+          { term: "MAC filtering", detail: "Allows or blocks devices by hardware address. It adds control but can be bypassed, so do not rely on it alone." },
+          { term: "Default settings", detail: "Out-of-box usernames, passwords, and SSIDs should be changed because attackers know common defaults." }
+        ]
       },
       {
         type: "Protection devices",
-        points: ["Hardware firewall", "Software firewall", "Host firewall", "Network firewall", "Stateful inspection", "Stateless inspection", "IDS", "IPS", "SIEM"]
+        points: [
+          { term: "Hardware firewall", detail: "A dedicated device that filters traffic between networks." },
+          { term: "Software firewall", detail: "Firewall software running on a server, workstation, or virtual system." },
+          { term: "Host firewall", detail: "Protects one endpoint by filtering inbound and outbound traffic." },
+          { term: "Network firewall", detail: "Protects a network boundary or segment." },
+          { term: "Stateful inspection", detail: "Tracks connection state and allows traffic that belongs to valid sessions." },
+          { term: "Stateless inspection", detail: "Filters packets based only on rules, without remembering connection state." },
+          { term: "IDS", detail: "Intrusion Detection System alerts when suspicious activity is found." },
+          { term: "IPS", detail: "Intrusion Prevention System can block suspicious traffic inline." },
+          { term: "SIEM", detail: "Security Information and Event Management collects and correlates logs for detection and investigation." }
+        ]
       },
       {
         type: "Filtering controls",
-        points: ["Content filtering", "Blacklisting: block known bad items", "Whitelisting: allow only approved items"]
+        points: [
+          { term: "Content filtering", detail: "Allows or blocks websites, files, or content based on category, risk, or policy." },
+          { term: "Blacklisting", detail: "Blocks known bad or unwanted items while allowing others." },
+          { term: "Whitelisting", detail: "Allows only approved items and blocks everything else by default." }
+        ]
       },
       {
         type: "Network isolation",
-        points: ["Routing", "Honeynet", "DMZ/perimeter network", "NAT/PAT", "VPN", "IPsec", "Air gap", "DirectAccess", "VLAN"]
+        points: [
+          { term: "Routing", detail: "Moves traffic between networks and can enforce separation through routes and access rules." },
+          { term: "Honeynet", detail: "A decoy network used to observe attacker behavior without exposing real systems." },
+          { term: "DMZ/perimeter network", detail: "A separate zone for public-facing services, isolated from the internal network." },
+          { term: "NAT/PAT", detail: "Translates private IP addresses to public addresses. PAT lets many devices share one public IP using ports." },
+          { term: "VPN", detail: "Creates an encrypted tunnel for remote users or site-to-site connections." },
+          { term: "IPsec", detail: "Secures IP traffic with authentication and encryption." },
+          { term: "Air gap", detail: "Physically separates a network from other networks for strong isolation." },
+          { term: "DirectAccess", detail: "Microsoft remote access technology that connects managed clients to internal resources." },
+          { term: "VLAN", detail: "Logically separates devices into different network segments." }
+        ]
       },
       {
         type: "Protocol security",
-        points: ["Tunneling", "DNSSEC", "Network sniffing", "Use SSH instead of Telnet", "Use HTTPS instead of HTTP for sensitive web traffic"]
+        points: [
+          { term: "Tunneling", detail: "Encapsulates one type of network traffic inside another, often to secure or transport it." },
+          { term: "DNSSEC", detail: "Adds digital signatures to DNS data so clients can verify DNS responses were not altered." },
+          { term: "Network sniffing", detail: "Capturing network traffic. It is useful for troubleshooting but dangerous if used to steal data." },
+          { term: "SSH vs. Telnet", detail: "SSH encrypts remote administration. Telnet sends data in cleartext and should be avoided." },
+          { term: "HTTPS vs. HTTP", detail: "HTTPS uses TLS to protect web traffic. HTTP does not encrypt data." }
+        ]
       },
       {
         type: "Ports to memorize",
-        points: ["FTP 21", "SSH 22", "Telnet 23", "SMTP 25", "DNS 53", "HTTP 80", "HTTPS 443", "LDAP 389", "LDAPS 636", "SNMP 161", "RDP 3389"]
+        points: [
+          { term: "FTP 21", detail: "File Transfer Protocol. Traditional FTP is not encrypted." },
+          { term: "SSH 22", detail: "Secure remote command-line administration." },
+          { term: "Telnet 23", detail: "Insecure remote command-line access; replaced by SSH." },
+          { term: "SMTP 25", detail: "Used for sending email between mail servers." },
+          { term: "DNS 53", detail: "Resolves domain names to IP addresses." },
+          { term: "HTTP 80", detail: "Unencrypted web traffic." },
+          { term: "HTTPS 443", detail: "Encrypted web traffic using TLS." },
+          { term: "LDAP 389", detail: "Directory access protocol without TLS by default." },
+          { term: "LDAPS 636", detail: "LDAP protected with TLS." },
+          { term: "SNMP 161", detail: "Network monitoring and management protocol." },
+          { term: "RDP 3389", detail: "Microsoft Remote Desktop Protocol." }
+        ]
       }
     ]
   },
@@ -87,15 +206,33 @@ const reviewerTopics = [
     sections: [
       {
         type: "Email protection",
-        points: ["Antispam", "Spoofing", "Phishing", "Pharming", "Email client protection", "User training"]
+        points: [
+          { term: "Antispam", detail: "Filters unwanted or suspicious email before it reaches users." },
+          { term: "Spoofing", detail: "Fakes sender information to make a message look trusted." },
+          { term: "Phishing", detail: "Tricks users into giving information, opening links, or downloading malware." },
+          { term: "Pharming", detail: "Redirects users to fake websites, often through DNS or host-file manipulation." },
+          { term: "Email client protection", detail: "Uses filtering, attachment scanning, link checks, and safe settings to reduce email threats." },
+          { term: "User training", detail: "Teaches users to recognize suspicious messages, links, attachments, and requests." }
+        ]
       },
       {
         type: "Browser security",
-        points: ["Security settings", "Cache management", "Private browsing", "Do not trust private mode as full anonymity"]
+        points: [
+          { term: "Security settings", detail: "Browser controls for pop-ups, downloads, cookies, permissions, and unsafe content." },
+          { term: "Cache management", detail: "Clearing stored pages, cookies, and temporary data can reduce exposed private information on shared devices." },
+          { term: "Private browsing", detail: "Reduces local history and cache storage, but it does not hide all activity from networks, websites, or providers." }
+        ]
       },
       {
         type: "Anti-malware tasks",
-        points: ["Install protection", "Uninstall/reinstall when needed", "Update signatures and software", "Schedule scans", "Investigate alerts", "Remediate detected malware"]
+        points: [
+          { term: "Install protection", detail: "Adds antivirus or anti-malware software to detect and block malicious activity." },
+          { term: "Uninstall/reinstall", detail: "Used when protection is broken, corrupted, or needs replacement." },
+          { term: "Updates", detail: "New signatures and engine updates help detect newer threats." },
+          { term: "Scheduled scans", detail: "Regularly checks systems for malware even when no user has noticed a problem." },
+          { term: "Alert investigation", detail: "Reviews what was detected, where it came from, and whether more systems are affected." },
+          { term: "Remediation", detail: "Removes or quarantines malware and fixes the weakness that allowed it." }
+        ]
       }
     ]
   },
@@ -104,11 +241,22 @@ const reviewerTopics = [
     sections: [
       {
         type: "Expected experience",
-        points: ["Client operating systems", "Security applications", "Firewalls", "Network devices", "Common network ports"]
+        points: [
+          { term: "Client operating systems", detail: "Know basic security settings and tools in end-user systems." },
+          { term: "Security applications", detail: "Understand antivirus, anti-malware, firewalls, and filtering tools." },
+          { term: "Firewalls", detail: "Know what they protect, where they are placed, and how rules affect traffic." },
+          { term: "Network devices", detail: "Understand routers, switches, wireless access points, and security appliances at a basic level." },
+          { term: "Common network ports", detail: "Memorize common services and their ports because they appear often in network security questions." }
+        ]
       },
       {
         type: "Exam shape",
-        points: ["Recommended preparation: at least 150 hours of instruction or hands-on experience", "Time: 50 minutes", "Questions: 35-50", "Passing score: 700/1000"]
+        points: [
+          { term: "Preparation", detail: "The objective sheet recommends at least 150 hours of instruction or hands-on experience." },
+          { term: "Time", detail: "The exam information lists 50 minutes." },
+          { term: "Questions", detail: "The exam information lists 35-50 questions." },
+          { term: "Passing score", detail: "The listed cut score is 700 out of 1000." }
+        ]
       }
     ]
   },
@@ -117,11 +265,19 @@ const reviewerTopics = [
     sections: [
       {
         type: "How to use this reviewer",
-        points: ["Study one type at a time", "Use the question bank after each domain", "Read the explanation for every missed item"]
+        points: [
+          { term: "Study one type at a time", detail: "Focus on one small group, such as ports or malware, before moving to the next." },
+          { term: "Use the question bank after each domain", detail: "Answer questions after studying a domain to check if you can recognize the concepts." },
+          { term: "Read every explanation", detail: "The explanation teaches why the correct answer is right, which is more useful than memorizing letters." }
+        ]
       },
       {
         type: "When to retake",
-        points: ["Retake until your score is consistently above passing level", "Do not rely on one lucky high score", "Review weak categories before starting another 50-item take"]
+        points: [
+          { term: "Consistent passing", detail: "Retake until your score stays above the passing level across multiple attempts." },
+          { term: "Avoid lucky scores", detail: "One high score may come from familiar questions. Consistency means stronger understanding." },
+          { term: "Review weak categories", detail: "Use missed questions to decide which type or domain needs more study." }
+        ]
       }
     ]
   }
@@ -262,7 +418,10 @@ function renderReviewer() {
       ${(topic.sections || [{ type: "Key points", points: topic.points }]).map((section) => `
         <div class="review-section">
           <h4>${section.type}</h4>
-          <ul>${section.points.map((point) => `<li>${point}</li>`).join("")}</ul>
+          <ul>${section.points.map((point) => {
+            if (typeof point === "string") return `<li>${point}</li>`;
+            return `<li><span class="term">${point.term}</span><span class="definition">${point.detail}</span></li>`;
+          }).join("")}</ul>
         </div>
       `).join("")}
     </article>
