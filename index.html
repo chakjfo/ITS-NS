@@ -22,14 +22,14 @@
   <main class="app-shell">
     <section class="hero-panel" aria-labelledby="overviewTitle">
       <div class="hero-copy">
-        <h2 id="overviewTitle">Practice, review, then try another 50-item take.</h2>
+        <h2 id="overviewTitle">Practice, review, then try a category take.</h2>
         <p>
           Study core network security ideas for an ITS-style exam: threats,
           controls, protocols, cryptography, firewalls, monitoring, incident
           response, wireless, and secure operations.
         </p>
         <div class="actions">
-          <button class="primary" id="startQuiz">Start 50-item take</button>
+          <button class="primary" id="startQuiz">Start category take</button>
           <button id="showReviewer">Open reviewer</button>
           <button id="showBank">Browse question bank</button>
         </div>
@@ -68,8 +68,14 @@
     <section class="view" id="quiz">
       <div class="quiz-layout">
         <aside class="quiz-status">
-          <h2>50-item take</h2>
+          <h2>Category take</h2>
           <p id="quizState">Start a take to receive 50 randomized questions from the likely exam bank.</p>
+          <label class="quiz-category-control">
+            Exam category
+            <select id="quizCategory">
+              <option value="all">All categories</option>
+            </select>
+          </label>
           <div class="meter" aria-label="Quiz progress"><span id="progressBar"></span></div>
           <div class="stats">
             <div><strong id="currentNumber">0</strong><span>Current</span></div>

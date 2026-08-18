@@ -372,18 +372,21 @@ const examQuestions = [
 ];
 
 const activeQuestions = examQuestions;
-const TAKE_SIZE = Math.min(50, activeQuestions.length);
+const MAX_TAKE_SIZE = 50;
 let take = [];
 let current = 0;
 let score = 0;
 let answered = false;
 let missed = [];
+let selectedQuizCategory = "all";
+let currentTakeSize = Math.min(MAX_TAKE_SIZE, activeQuestions.length);
 
 const views = document.querySelectorAll(".view");
 const tabs = document.querySelectorAll(".tab");
 const reviewCards = document.getElementById("reviewCards");
 const bankList = document.getElementById("bankList");
 const categoryFilter = document.getElementById("categoryFilter");
+const quizCategory = document.getElementById("quizCategory");
 const searchBank = document.getElementById("searchBank");
 const questionText = document.getElementById("questionText");
 const choices = document.getElementById("choices");
@@ -431,6 +434,17 @@ function renderReviewer() {
 function renderCategories() {
   const categories = [...new Set(activeQuestions.map((item) => item.c))].sort();
   categoryFilter.innerHTML += categories.map((category) => `<option value="${category}">${category}</option>`).join("");
+  quizCategory.innerHTML += categories.map((category) => `<option value="${category}">${category}</option>`).join("");
+}
+
+function getQuizPool() {
+  return selectedQuizCategory === "all"
+    ? activeQuestions
+    : activeQuestions.filter((item) => item.c === selectedQuizCategory);
+}
+
+function getCategoryLabel() {
+  return selectedQuizCategory === "all" ? "all categories" : selectedQuizCategory;
 }
 
 function renderBank() {
@@ -453,7 +467,9 @@ function renderBank() {
 }
 
 function startTake() {
-  take = shuffle(activeQuestions).slice(0, TAKE_SIZE).map((item) => ({ ...item, choices: shuffle(item.o) }));
+  const pool = getQuizPool();
+  currentTakeSize = Math.min(MAX_TAKE_SIZE, pool.length);
+  take = shuffle(pool).slice(0, currentTakeSize).map((item) => ({ ...item, choices: shuffle(item.o) }));
   current = 0;
   score = 0;
   missed = [];
@@ -464,13 +480,15 @@ function startTake() {
 }
 
 function updateStatus() {
-  document.getElementById("currentNumber").textContent = take.length ? Math.min(current + 1, TAKE_SIZE) : 0;
+  const previewSize = Math.min(MAX_TAKE_SIZE, getQuizPool().length);
+  const takeSize = take.length ? currentTakeSize : previewSize;
+  document.getElementById("currentNumber").textContent = take.length ? Math.min(current + 1, currentTakeSize) : 0;
   document.getElementById("score").textContent = score;
-  document.getElementById("remaining").textContent = take.length ? Math.max(TAKE_SIZE - current - (answered ? 1 : 0), 0) : TAKE_SIZE;
+  document.getElementById("remaining").textContent = take.length ? Math.max(currentTakeSize - current - (answered ? 1 : 0), 0) : takeSize;
   document.getElementById("quizState").textContent = take.length
-    ? `Answering item ${Math.min(current + 1, TAKE_SIZE)} of ${TAKE_SIZE}.`
-    : `Start a take to receive ${TAKE_SIZE} randomized questions from the likely exam bank.`;
-  document.getElementById("progressBar").style.width = `${take.length ? (current / TAKE_SIZE) * 100 : 0}%`;
+    ? `Answering item ${Math.min(current + 1, currentTakeSize)} of ${currentTakeSize} from ${getCategoryLabel()}.`
+    : `Start a take to receive ${takeSize} randomized questions from ${getCategoryLabel()}.`;
+  document.getElementById("progressBar").style.width = `${take.length ? (current / currentTakeSize) * 100 : 0}%`;
 }
 
 function renderQuestion() {
@@ -487,7 +505,7 @@ function renderQuestion() {
   }
 
   questionText.textContent = item.q;
-  document.querySelector(".question-meta").textContent = `${item.c} | Item ${current + 1} of ${TAKE_SIZE}`;
+  document.querySelector(".question-meta").textContent = `${item.c} | Item ${current + 1} of ${currentTakeSize}`;
   choices.innerHTML = item.choices.map((choice) => `
     <button class="choice" data-choice="${choice}">${choice}</button>
   `).join("");
@@ -512,7 +530,7 @@ function chooseAnswer(choiceButton) {
   feedback.hidden = false;
   feedback.innerHTML = `<strong>${correct ? "Correct." : "Not quite."}</strong> ${item.e}`;
   nextQuestion.hidden = false;
-  document.getElementById("progressBar").style.width = `${((current + 1) / TAKE_SIZE) * 100}%`;
+  document.getElementById("progressBar").style.width = `${((current + 1) / currentTakeSize) * 100}%`;
   updateStatus();
 }
 
@@ -522,16 +540,16 @@ function finishTake() {
   choices.innerHTML = "";
   feedback.hidden = true;
   nextQuestion.hidden = true;
-  document.getElementById("quizState").textContent = `Finished. You scored ${score} out of ${TAKE_SIZE}.`;
-  document.getElementById("currentNumber").textContent = TAKE_SIZE;
+  document.getElementById("quizState").textContent = `Finished ${getCategoryLabel()}. You scored ${score} out of ${currentTakeSize}.`;
+  document.getElementById("currentNumber").textContent = currentTakeSize;
   document.getElementById("remaining").textContent = 0;
   document.getElementById("progressBar").style.width = "100%";
 
-  const percent = Math.round((score / TAKE_SIZE) * 100);
+  const percent = Math.round((score / currentTakeSize) * 100);
   const missedHtml = missed.slice(0, 10).map((item) => `<li><strong>${item.q}</strong><br>${item.e}</li>`).join("");
   results.hidden = false;
   results.innerHTML = `
-    <h3>Your score: ${score}/${TAKE_SIZE} (${percent}%)</h3>
+    <h3>Your score: ${score}/${currentTakeSize} (${percent}%)</h3>
     <p>${percent >= 80 ? "Strong work. Review the missed items and take another randomized set." : "Keep going. Read the reviewer sections, then retake with a new randomized set."}</p>
     ${missed.length ? `<h3>First missed items to review</h3><ol>${missedHtml}</ol>` : "<p>No missed items in this take.</p>"}
   `;
@@ -542,6 +560,21 @@ document.getElementById("startQuiz").addEventListener("click", startTake);
 document.getElementById("restartQuiz").addEventListener("click", startTake);
 document.getElementById("showReviewer").addEventListener("click", () => setView("reviewer"));
 document.getElementById("showBank").addEventListener("click", () => setView("bank"));
+quizCategory.addEventListener("change", () => {
+  selectedQuizCategory = quizCategory.value;
+  take = [];
+  current = 0;
+  score = 0;
+  missed = [];
+  answered = false;
+  questionText.textContent = "Ready when you are.";
+  document.querySelector(".question-meta").textContent = "Questionnaire";
+  choices.innerHTML = "";
+  feedback.hidden = true;
+  nextQuestion.hidden = true;
+  results.hidden = true;
+  updateStatus();
+});
 themeToggle.addEventListener("click", () => {
   const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
   applyTheme(nextTheme);

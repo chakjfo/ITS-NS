@@ -245,6 +245,22 @@ button:disabled { cursor: not-allowed; opacity: 0.65; }
 .quiz-status h2, .question-card h2 { margin-top: 0; }
 .quiz-status p { color: var(--muted); line-height: 1.5; }
 
+.quiz-category-control {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--muted);
+  margin: 1rem 0;
+}
+
+.quiz-category-control select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.68rem 0.75rem;
+  background: var(--panel);
+  color: var(--ink);
+}
+
 .meter {
   height: 12px;
   background: var(--meter-bg);
