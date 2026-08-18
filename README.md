@@ -1,8 +1,8 @@
 # ITS Network Security Reviewer
 
-A static reviewer and questionnaire app for ITS-style network security exam practice.
+A static reviewer and questionnaire app based only on the Certiport ITS Network Security objective domains.
 
-Primary syllabus source: [Certiport ITS Network Security objectives](https://certiport.filecamp.com/s/i/ITS_Network_Security)
+Primary and only syllabus source: [Certiport ITS Network Security objectives](https://certiport.filecamp.com/s/i/ITS_Network_Security)
 
 ## Features
 

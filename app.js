@@ -42,12 +42,19 @@ const reviewerTopics = [
         type: "Attack types",
         points: [
           { term: "Malware", detail: "Malicious software designed to damage systems, steal data, spy on users, or gain unauthorized access." },
+          { term: "Buffer overflow", detail: "An attack that sends more data than a program expects, possibly overwriting memory and causing crashes or code execution." },
+          { term: "Virus", detail: "Malware that attaches to files or programs and spreads when the infected item runs." },
+          { term: "Worm", detail: "Malware that can spread across systems or networks without needing a user to run an infected file." },
+          { term: "Trojan horse", detail: "Malware disguised as useful or legitimate software so users install or run it." },
+          { term: "Spyware", detail: "Malware that secretly monitors activity or collects information." },
+          { term: "Backdoor", detail: "A hidden access method that bypasses normal authentication or security controls." },
           { term: "Zero day", detail: "An attack or vulnerability that is not yet publicly patched. Defenders may have little warning." },
           { term: "DoS", detail: "Denial of service makes a system unavailable by overwhelming it or abusing a weakness." },
           { term: "SQL injection", detail: "An attacker inserts database commands into input fields. Safe coding and parameterized queries help prevent it." },
           { term: "XSS", detail: "Cross-site scripting injects malicious scripts into web pages so they run in another user's browser." },
           { term: "Brute force", detail: "Repeated guessing of passwords or keys. Lockouts, MFA, and strong passwords reduce this risk." },
           { term: "Man-in-the-middle", detail: "The attacker intercepts or alters traffic between two parties. TLS, certificates, and VPNs help reduce the risk." },
+          { term: "Man-in-the-browser", detail: "Malware inside a browser intercepts or changes web activity, often after the user has already authenticated." },
           { term: "Social engineering", detail: "Tricking people into revealing information or taking unsafe actions." },
           { term: "Adware", detail: "Software that displays unwanted advertisements. It can slow systems, track behavior, or install with other unwanted programs." },
           { term: "Rootkit", detail: "Malware that hides itself and may keep privileged access. It is dangerous because normal tools may not easily detect it." },
@@ -76,8 +83,11 @@ const reviewerTopics = [
           { term: "System hardening", detail: "Configures systems securely by disabling unused features, limiting permissions, and applying secure baselines." },
           { term: "Patch management", detail: "Keeps software updated so known vulnerabilities are fixed before attackers exploit them." },
           { term: "Attack-surface reduction", detail: "Removes unnecessary ports, services, software, and permissions." },
+          { term: "Group Policy", detail: "Windows centralized configuration system. gpupdate refreshes policies and gpresult shows applied policies." },
           { term: "User Account Control", detail: "Windows feature that prompts before elevated actions to reduce silent administrative changes." },
           { term: "Secure DNS updates", detail: "Allows only authorized systems to update DNS records, reducing spoofed or incorrect records." },
+          { term: "Keeping client OS and software updated", detail: "Applies security fixes and feature updates so endpoints are less exposed to known vulnerabilities." },
+          { term: "Encrypting offline folders", detail: "Protects locally cached offline files so copied or synchronized data is not readable without authorization." },
           { term: "Software restriction policies", detail: "Limit what programs can run, helping block unauthorized or malicious software." }
         ]
       },
@@ -101,6 +111,7 @@ const reviewerTopics = [
           { term: "Folder permissions", detail: "Control access to folders and often apply to files inside them." },
           { term: "Share permissions", detail: "Control access over a network share. They combine with file system permissions." },
           { term: "Inheritance", detail: "Child files or folders receive permissions from a parent folder unless inheritance is blocked." },
+          { term: "Moving or copying files", detail: "Permissions can behave differently when files are moved or copied within the same disk or to another disk." },
           { term: "Ownership", detail: "The owner can usually change permissions, depending on system rules." },
           { term: "Delegation", detail: "Assigns limited administrative tasks to another user or group without giving full admin rights." },
           { term: "Mixed group permissions", detail: "When users belong to multiple groups, effective access depends on the combined permissions and denies." }
@@ -122,6 +133,7 @@ const reviewerTopics = [
           { term: "Drive encryption", detail: "Encrypts an entire disk or volume, protecting data if a device is lost or stolen." },
           { term: "BitLocker", detail: "Microsoft drive encryption feature commonly used with Windows." },
           { term: "TPM", detail: "Trusted Platform Module stores or protects cryptographic keys in hardware." },
+          { term: "Secure communication processes", detail: "Protects messages and sessions such as email, texting, chat, and social media using appropriate secure methods." },
           { term: "VPN encryption", detail: "Protects traffic through an encrypted tunnel over an untrusted network." },
           { term: "Public/private keys", detail: "Asymmetric key pair where the public key can be shared and the private key must be protected." },
           { term: "Certificates", detail: "Bind a public key to an identity and help systems trust secure connections." }
@@ -150,6 +162,7 @@ const reviewerTopics = [
           { term: "Network firewall", detail: "Protects a network boundary or segment." },
           { term: "Stateful inspection", detail: "Tracks connection state and allows traffic that belongs to valid sessions." },
           { term: "Stateless inspection", detail: "Filters packets based only on rules, without remembering connection state." },
+          { term: "Security baselines", detail: "Approved secure configuration standards used to compare and harden systems or devices." },
           { term: "IDS", detail: "Intrusion Detection System alerts when suspicious activity is found." },
           { term: "IPS", detail: "Intrusion Prevention System can block suspicious traffic inline." },
           { term: "SIEM", detail: "Security Information and Event Management collects and correlates logs for detection and investigation." }
@@ -196,6 +209,7 @@ const reviewerTopics = [
           { term: "SMTP 25", detail: "Used for sending email between mail servers." },
           { term: "DNS 53", detail: "Resolves domain names to IP addresses." },
           { term: "HTTP 80", detail: "Unencrypted web traffic." },
+          { term: "IMAP 143", detail: "Email retrieval protocol used by mail clients to access messages on a mail server." },
           { term: "HTTPS 443", detail: "Encrypted web traffic using TLS." },
           { term: "LDAP 389", detail: "Directory access protocol without TLS by default." },
           { term: "LDAPS 636", detail: "LDAP protected with TLS." },
@@ -239,59 +253,14 @@ const reviewerTopics = [
         ]
       }
     ]
-  },
-  {
-    title: "Exam Readiness",
-    sections: [
-      {
-        type: "Expected experience",
-        points: [
-          { term: "Client operating systems", detail: "Know basic security settings and tools in end-user systems." },
-          { term: "Security applications", detail: "Understand antivirus, anti-malware, firewalls, and filtering tools." },
-          { term: "Firewalls", detail: "Know what they protect, where they are placed, and how rules affect traffic." },
-          { term: "Network devices", detail: "Understand routers, switches, wireless access points, and security appliances at a basic level." },
-          { term: "Common network ports", detail: "Memorize common services and their ports because they appear often in network security questions." }
-        ]
-      },
-      {
-        type: "Exam shape",
-        points: [
-          { term: "Preparation", detail: "The objective sheet recommends at least 150 hours of instruction or hands-on experience." },
-          { term: "Time", detail: "The exam information lists 50 minutes." },
-          { term: "Questions", detail: "The exam information lists 35-50 questions." },
-          { term: "Passing score", detail: "The listed cut score is 700 out of 1000." }
-        ]
-      }
-    ]
-  },
-  {
-    title: "Study Strategy",
-    sections: [
-      {
-        type: "How to use this reviewer",
-        points: [
-          { term: "Study one type at a time", detail: "Focus on one small group, such as ports or malware, before moving to the next." },
-          { term: "Use the question bank after each domain", detail: "Answer questions after studying a domain to check if you can recognize the concepts." },
-          { term: "Read every explanation", detail: "The explanation teaches why the correct answer is right, which is more useful than memorizing letters." }
-        ]
-      },
-      {
-        type: "When to retake",
-        points: [
-          { term: "Consistent passing", detail: "Retake until your score stays above the passing level across multiple attempts." },
-          { term: "Avoid lucky scores", detail: "One high score may come from familiar questions. Consistency means stronger understanding." },
-          { term: "Review weak categories", detail: "Use missed questions to decide which type or domain needs more study." }
-        ]
-      }
-    ]
   }
 ];
 
 const questionOptionGlossary = [
   { term: "Adware", detail: "Software that displays unwanted advertisements. It may track browsing behavior or install with other unwanted programs." },
   { term: "Antivirus software", detail: "Security software that detects, blocks, quarantines, or removes malware." },
-  { term: "ARP", detail: "Address Resolution Protocol maps an IPv4 address to a MAC address on a local network." },
   { term: "Backdoor", detail: "A hidden way to access a system while bypassing normal authentication." },
+  { term: "Buffer overflow", detail: "An attack that writes more data to memory than expected, which can crash software or allow code execution." },
   { term: "BitLocker", detail: "Microsoft drive encryption that protects stored data, often with TPM support." },
   { term: "Blacklisting", detail: "A filtering approach that blocks known bad or unwanted items." },
   { term: "Brute force attack", detail: "An attack that repeatedly guesses passwords, PINs, or keys until one works." },
@@ -305,12 +274,14 @@ const questionOptionGlossary = [
   { term: "Firewall", detail: "A control that permits or denies traffic based on rules." },
   { term: "FTP", detail: "File Transfer Protocol, commonly on port 21. Traditional FTP is not encrypted." },
   { term: "Full backup", detail: "Copies all selected data." },
+  { term: "Group Policy", detail: "Windows centralized configuration feature; gpupdate refreshes it and gpresult reports applied settings." },
   { term: "gpresult", detail: "Windows command that shows which Group Policy settings apply to a user or computer." },
   { term: "gpupdate", detail: "Windows command that refreshes Group Policy settings." },
   { term: "Honeynet", detail: "A decoy network used to observe attacker behavior without exposing real production systems." },
   { term: "HTTP", detail: "Unencrypted web traffic, commonly on port 80." },
   { term: "HTTPS", detail: "Encrypted web traffic using TLS, commonly on port 443." },
   { term: "IDS", detail: "Intrusion Detection System watches for suspicious activity and alerts." },
+  { term: "IMAP", detail: "Email retrieval protocol listed in the well-known ports objective." },
   { term: "Incremental backup", detail: "Copies data changed since the last backup of any type." },
   { term: "Inheritance", detail: "Child files or folders receiving permissions from a parent folder." },
   { term: "Integrity", detail: "Protects data from unauthorized or accidental modification." },
@@ -324,6 +295,7 @@ const questionOptionGlossary = [
   { term: "Logic bomb", detail: "Malicious code that activates when a condition is met, such as a date or event." },
   { term: "MAC filtering", detail: "Allows or blocks devices by MAC address. It adds control but is not strong enough alone." },
   { term: "Man-in-the-middle", detail: "An attack where someone intercepts or changes communication between two parties." },
+  { term: "Man-in-the-browser", detail: "A browser-based interception attack where malware changes or observes web activity in the browser." },
   { term: "Mantrap", detail: "A controlled physical entry area with two interlocking doors." },
   { term: "MFA", detail: "Multifactor authentication uses more than one factor, such as password plus authenticator approval." },
   { term: "NAT", detail: "Network Address Translation maps private addresses to public addresses." },
@@ -338,6 +310,7 @@ const questionOptionGlossary = [
   { term: "RDP", detail: "Remote Desktop Protocol, commonly on port 3389." },
   { term: "Rootkit", detail: "Malware that hides itself and may maintain privileged access." },
   { term: "SFTP", detail: "Secure File Transfer Protocol over SSH." },
+  { term: "Security baseline", detail: "A standard secure configuration used to harden and compare systems or network devices." },
   { term: "Share permissions", detail: "Permissions that control access to a shared folder over the network." },
   { term: "SIEM", detail: "Security Information and Event Management collects and correlates logs and alerts." },
   { term: "SMTP", detail: "Email sending protocol, commonly on port 25." },
@@ -348,12 +321,15 @@ const questionOptionGlossary = [
   { term: "SSH", detail: "Secure remote administration protocol, commonly on port 22." },
   { term: "SSID", detail: "The visible or configured name of a wireless network." },
   { term: "Telnet", detail: "Insecure remote command-line protocol, commonly on port 23. SSH should be used instead." },
+  { term: "Trojan horse", detail: "Malware that pretends to be useful or legitimate software." },
   { term: "TPM", detail: "Trusted Platform Module, a hardware component that helps protect cryptographic keys." },
   { term: "UAC", detail: "User Account Control prompts before privileged Windows changes." },
+  { term: "Virus", detail: "Malware that attaches to files or programs and spreads when executed." },
   { term: "VLAN", detail: "Virtual LAN, a logical network segment." },
   { term: "VPN", detail: "Virtual Private Network creates an encrypted tunnel over an untrusted network." },
   { term: "WEP", detail: "Old and weak Wi-Fi security method that should not be used." },
   { term: "Whitelisting", detail: "Allows only approved items and blocks everything else by default." },
+  { term: "Worm", detail: "Malware that can self-spread across systems or networks." },
   { term: "WPA2/WPA3", detail: "Modern Wi-Fi security modes stronger than WEP." },
   { term: "XSS", detail: "Another name for cross-site scripting." },
   { term: "Zero day", detail: "A vulnerability or attack before a fix is publicly available." }
@@ -371,10 +347,17 @@ const examQuestions = [
   { c: "1. Defense in Depth", q: "Which is an administrative control?", a: "Security policy", o: ["Security policy", "Firewall rule", "Door lock", "Drive encryption"], e: "Administrative controls include policies, procedures, standards, and training." },
   { c: "1. Defense in Depth", q: "Which is a technical control?", a: "Antivirus software", o: ["Antivirus software", "A written policy", "A guard desk", "A training schedule"], e: "Technical controls are implemented through technology, such as antivirus, ACLs, encryption, and authentication systems." },
   { c: "1. Defense in Depth", q: "What is a mantrap?", a: "A controlled physical access area with two interlocking doors", o: ["A controlled physical access area with two interlocking doors", "A malware removal tool", "A wireless SSID", "A backup type"], e: "Mantraps are physical security controls in the official objective domain." },
+  { c: "1. Defense in Depth", q: "Which attack can overwrite memory by sending more data than a program expects?", a: "Buffer overflow", o: ["Buffer overflow", "Pharming", "MAC filtering", "Differential backup"], e: "Buffer overflow is listed in the Certiport attack-types objective." },
+  { c: "1. Defense in Depth", q: "Which malware attaches to files or programs and spreads when they run?", a: "Virus", o: ["Virus", "Worm", "Backdoor", "Logic bomb"], e: "A virus usually needs an infected file or program to execute so it can spread." },
+  { c: "1. Defense in Depth", q: "Which malware can spread across networks without needing a user to run an infected file?", a: "Worm", o: ["Worm", "Adware", "Trojan horse", "Keylogger"], e: "Worms are known for self-spreading across systems or networks." },
+  { c: "1. Defense in Depth", q: "Which malware is disguised as useful or legitimate software?", a: "Trojan horse", o: ["Trojan horse", "Buffer overflow", "VLAN", "DNSSEC"], e: "A Trojan horse tricks users by pretending to be legitimate." },
+  { c: "1. Defense in Depth", q: "Which malware secretly monitors user activity or collects information?", a: "Spyware", o: ["Spyware", "Ransomware", "Firewall", "Full backup"], e: "Spyware is listed in the malware examples under attack types." },
+  { c: "1. Defense in Depth", q: "Which malware provides hidden access that bypasses normal authentication?", a: "Backdoor", o: ["Backdoor", "Rootkit", "IMAP", "Share permissions"], e: "A backdoor is a hidden access method into a system." },
   { c: "1. Defense in Depth", q: "Which attack injects malicious database commands through unsafe input?", a: "SQL injection", o: ["SQL injection", "Pharming", "NAT", "Kerberos"], e: "SQL injection is named directly in the ITS Network Security attack-types objective." },
   { c: "1. Defense in Depth", q: "Which attack runs malicious scripts in a victim's browser?", a: "Cross-site scripting", o: ["Cross-site scripting", "IPsec", "Differential backup", "MAC filtering"], e: "XSS is a web application attack listed in the objective domain." },
   { c: "1. Defense in Depth", q: "Which attack attempts many passwords until one works?", a: "Brute force attack", o: ["Brute force attack", "DNSSEC", "BitLocker", "Content filtering"], e: "Brute force attacks are repeated guessing attempts against passwords or keys." },
   { c: "1. Defense in Depth", q: "Which attack intercepts or alters communication between two parties?", a: "Man-in-the-middle", o: ["Man-in-the-middle", "Full backup", "gpresult", "SSID hiding"], e: "MITM and MITB are listed in the attack-types objective." },
+  { c: "1. Defense in Depth", q: "Which attack uses malware inside the browser to observe or change web activity?", a: "Man-in-the-browser", o: ["Man-in-the-browser", "Mantrap", "NAT/PAT", "LDAPS"], e: "Man-in-the-browser is listed with man-in-the-middle in the Certiport attack-types objective." },
   { c: "1. Defense in Depth", q: "Which malware hides privileged access and can conceal itself from normal tools?", a: "Rootkit", o: ["Rootkit", "Adware", "SSID", "Honeynet"], e: "Rootkits are malware designed to hide presence and maintain privileged control." },
   { c: "1. Defense in Depth", q: "Which malware encrypts or blocks access to data and demands payment?", a: "Ransomware", o: ["Ransomware", "Spyware", "Polymorphic virus", "Backdoor"], e: "Ransomware is explicitly listed in the exam objectives." },
   { c: "1. Defense in Depth", q: "Which malware changes its code to avoid signature detection?", a: "Polymorphic virus", o: ["Polymorphic virus", "Logic bomb", "Keylogger", "Adware"], e: "A polymorphic virus changes form while keeping its malicious behavior." },
@@ -389,15 +372,19 @@ const examQuestions = [
   { c: "2. Operating System Security", q: "What does UAC help prevent?", a: "Unauthorized or accidental privilege elevation", o: ["Unauthorized or accidental privilege elevation", "DNS record lookup", "Wireless roaming", "Full backup scheduling"], e: "User Account Control prompts before privileged Windows actions." },
   { c: "2. Operating System Security", q: "What does gpupdate do?", a: "Refreshes Group Policy settings", o: ["Refreshes Group Policy settings", "Shows DNS signatures", "Encrypts a drive", "Creates a honeynet"], e: "gpupdate is specifically listed in the objective domain." },
   { c: "2. Operating System Security", q: "What does gpresult show?", a: "Applied Group Policy settings", o: ["Applied Group Policy settings", "Open TCP ports only", "VPN encryption methods", "Browser cache files only"], e: "gpresult helps verify which Group Policy settings are applied." },
+  { c: "2. Operating System Security", q: "What is the purpose of secure dynamic DNS updates?", a: "Allow only authorized systems to update DNS records", o: ["Allow only authorized systems to update DNS records", "Disable all DNS lookups", "Replace Kerberos tickets", "Encrypt browser cache"], e: "Secure dynamic DNS updates are listed under client and server protection." },
+  { c: "2. Operating System Security", q: "What do software restriction policies help control?", a: "Which programs are allowed to run", o: ["Which programs are allowed to run", "Which DNS port is open", "Which emails are spam", "Which SSID is hidden"], e: "Software restriction policies reduce risk from unauthorized programs." },
   { c: "2. Operating System Security", q: "Which authentication method uses something more than just a password?", a: "Multifactor authentication", o: ["Multifactor authentication", "Single shared login", "Anonymous access", "Open Wi-Fi"], e: "MFA is directly listed under user authentication." },
   { c: "2. Operating System Security", q: "What is Kerberos used for?", a: "Ticket-based network authentication", o: ["Ticket-based network authentication", "Drive encryption", "Port translation", "Browser private mode"], e: "Kerberos is an authentication protocol used in domain environments." },
   { c: "2. Operating System Security", q: "What do Run As and sudo allow?", a: "Running tasks with elevated or alternate credentials", o: ["Running tasks with elevated or alternate credentials", "Disabling file permissions", "Creating DNSSEC signatures", "Filtering email spam"], e: "The objective domain mentions using secondary sign-on for administrative tasks." },
   { c: "2. Operating System Security", q: "Which permission type controls access over a network share?", a: "Share permissions", o: ["Share permissions", "SSID permissions", "NAT permissions", "Browser cache permissions"], e: "The exam objectives include file, folder, and share permissions." },
   { c: "2. Operating System Security", q: "What is permission inheritance?", a: "Child items receiving permissions from a parent folder", o: ["Child items receiving permissions from a parent folder", "A router learning routes", "A firewall tracking sessions", "A browser deleting cache"], e: "Inheritance is an important file and folder permission concept." },
+  { c: "2. Operating System Security", q: "What permission topic covers files moved or copied within the same disk or to another disk?", a: "How moving or copying affects permissions", o: ["How moving or copying affects permissions", "How DNSSEC signs records", "How spam filters score mail", "How VPNs choose tunnels"], e: "The Certiport objective specifically mentions moving or copying files within the same disk or another disk." },
   { c: "2. Operating System Security", q: "What does taking ownership of a file allow?", a: "Changing permissions when authorized", o: ["Changing permissions when authorized", "Bypassing all auditing", "Creating a VPN", "Filtering websites"], e: "Ownership affects who can manage permissions on files and folders." },
   { c: "2. Operating System Security", q: "Why enable audit policies?", a: "To record security-relevant events", o: ["To record security-relevant events", "To assign DHCP addresses", "To hide user actions", "To change wireless channels"], e: "Auditing and log review facilitate non-repudiation." },
   { c: "2. Operating System Security", q: "Which item should be reviewed to investigate audited activity?", a: "Log files", o: ["Log files", "SSID broadcast", "Cable length", "NAT pool only"], e: "The objective domain includes reviewing log files and deciding what to audit." },
   { c: "2. Operating System Security", q: "What is BitLocker?", a: "A Microsoft drive encryption feature", o: ["A Microsoft drive encryption feature", "A firewall inspection mode", "An email protocol", "A honeynet service"], e: "BitLocker and drive encryption are listed under encryption knowledge." },
+  { c: "2. Operating System Security", q: "Which OS security topic protects cached offline folders?", a: "Encrypting offline folders", o: ["Encrypting offline folders", "Changing SSID broadcast", "Running content filtering", "Creating a honeynet"], e: "Encrypting offline folders is listed under client and server protection." },
   { c: "2. Operating System Security", q: "What does TPM help protect?", a: "Cryptographic keys used for device security", o: ["Cryptographic keys used for device security", "DNS cache only", "Wireless signal strength", "Browser history"], e: "TPM is listed with drive encryption and secure computing hardware concepts." },
   { c: "2. Operating System Security", q: "Which key is shared publicly in asymmetric encryption?", a: "Public key", o: ["Public key", "Private key", "Password hash", "Local admin password"], e: "Public/private key concepts are part of the encryption objective." },
   { c: "2. Operating System Security", q: "What does a certificate help prove?", a: "A public key belongs to a subject", o: ["A public key belongs to a subject", "A switch has enough ports", "A browser cache is empty", "A backup is incremental"], e: "Certificate properties and services are listed in the encryption objective." },
@@ -413,6 +400,7 @@ const examQuestions = [
   { c: "3. Network Device Security", q: "What does an IDS do?", a: "Detects suspicious activity and alerts", o: ["Detects suspicious activity and alerts", "Blocks every packet inline", "Assigns file permissions", "Encrypts a hard drive"], e: "IDS is a detection technology." },
   { c: "3. Network Device Security", q: "How is an IPS different from an IDS?", a: "An IPS can block traffic inline", o: ["An IPS can block traffic inline", "An IPS only stores backups", "An IPS replaces DNS", "An IPS disables auditing"], e: "IPS can prevent or block detected attacks." },
   { c: "3. Network Device Security", q: "What does a SIEM do?", a: "Collects and correlates security events", o: ["Collects and correlates security events", "Encrypts Wi-Fi traffic", "Creates local users", "Clears browser history"], e: "SIEM is listed as a network protection device concept." },
+  { c: "3. Network Device Security", q: "What is a security baseline?", a: "An approved secure configuration standard", o: ["An approved secure configuration standard", "A hidden Wi-Fi name", "A type of malware", "A backup that copies everything"], e: "Security baselines are listed under network protection devices." },
   { c: "3. Network Device Security", q: "What is content filtering?", a: "Allowing or blocking content by policy or category", o: ["Allowing or blocking content by policy or category", "Delegating file ownership", "Updating Group Policy", "Creating a private key"], e: "Content filtering is listed with blacklisting and whitelisting." },
   { c: "3. Network Device Security", q: "What is blacklisting?", a: "Blocking known bad or unwanted items", o: ["Blocking known bad or unwanted items", "Allowing only approved items", "Encrypting a drive", "Creating an SSID"], e: "Blacklisting blocks specified items, while whitelisting allows only approved items." },
   { c: "3. Network Device Security", q: "What is whitelisting?", a: "Allowing only approved items", o: ["Allowing only approved items", "Blocking only known bad items", "Disabling all filters", "Clearing all logs"], e: "Whitelisting is more restrictive because only approved items are allowed." },
@@ -420,6 +408,7 @@ const examQuestions = [
   { c: "3. Network Device Security", q: "What is a honeynet?", a: "A decoy network used to observe attackers", o: ["A decoy network used to observe attackers", "A secure email filter", "A backup rotation", "A Kerberos ticket"], e: "Honeynet is part of network isolation methods in the objective domain." },
   { c: "3. Network Device Security", q: "What does NAT/PAT do?", a: "Translates private addresses to public addresses, often using ports", o: ["Translates private addresses to public addresses, often using ports", "Signs DNS records", "Audits file access", "Filters spam"], e: "NAT/PAT is listed under network isolation methods." },
   { c: "3. Network Device Security", q: "What is an air-gapped network?", a: "A network physically isolated from other networks", o: ["A network physically isolated from other networks", "A public guest Wi-Fi", "A browser cache", "A software firewall"], e: "Air gap networks are listed as an isolation method." },
+  { c: "3. Network Device Security", q: "Which Microsoft remote access technology is listed as a network isolation method?", a: "DirectAccess", o: ["DirectAccess", "Adware", "gpresult", "Antispam"], e: "DirectAccess appears in the Certiport network isolation objective." },
   { c: "3. Network Device Security", q: "What does a VLAN provide?", a: "Logical network separation", o: ["Logical network separation", "Drive encryption", "Email anti-spam", "Password hashing"], e: "VLANs are listed as network isolation methods." },
   { c: "3. Network Device Security", q: "What does IPsec protect?", a: "IP network communications", o: ["IP network communications", "Browser cache only", "Local file ownership", "Wireless SSID names"], e: "IPsec is listed with VPN and tunneling concepts." },
   { c: "3. Network Device Security", q: "What is tunneling?", a: "Encapsulating one network protocol inside another", o: ["Encapsulating one network protocol inside another", "Deleting malware alerts", "Changing file permissions", "Updating antivirus only"], e: "Tunneling is a protocol security concept." },
@@ -434,6 +423,7 @@ const examQuestions = [
   { c: "3. Network Device Security", q: "Which port is commonly used by LDAPS?", a: "636", o: ["636", "389", "25", "80"], e: "LDAPS commonly uses port 636." },
   { c: "3. Network Device Security", q: "Which port is commonly used by SNMP?", a: "161", o: ["161", "162", "143", "3389"], e: "SNMP agents commonly use UDP port 161." },
   { c: "3. Network Device Security", q: "Which protocol is used for secure file transfer over SSH?", a: "SFTP", o: ["SFTP", "FTP", "HTTP", "SMTP"], e: "SFTP is listed among well-known protocols and provides secure file transfer through SSH." },
+  { c: "3. Network Device Security", q: "Which protocol is used by mail clients to access messages on a mail server?", a: "IMAP", o: ["IMAP", "RDP", "SNMP", "Telnet"], e: "IMAP is one of the well-known protocols listed in the Certiport objective domain." },
 
   { c: "4. Secure Computing", q: "Which attack uses fake messages to trick users into giving information?", a: "Phishing", o: ["Phishing", "DNSSEC", "BitLocker", "NAT"], e: "Email protection includes spoofing, phishing, and pharming." },
   { c: "4. Secure Computing", q: "What is email spoofing?", a: "Forging sender information to make email look trusted", o: ["Forging sender information to make email look trusted", "Encrypting a folder", "Creating a VLAN", "Refreshing Group Policy"], e: "Spoofing is listed under email protection." },
@@ -617,7 +607,7 @@ function buildReviewerPrintDocument() {
 </head>
 <body>
   <h1>ITS Network Security Reviewer</h1>
-  <p class="subtitle">Searchable text study reviewer with definitions and short explanations.</p>
+  <p class="subtitle">Based only on the Certiport ITS Network Security objectives: https://certiport.filecamp.com/s/i/ITS_Network_Security</p>
   ${content}
   <section>
     <h2>Question Option Glossary</h2>
