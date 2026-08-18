@@ -9,6 +9,7 @@ Primary and only syllabus source: [Certiport ITS Network Security objectives](ht
 - High-yield reviewer cards for core network security topics
 - Focused likely-exam question bank aligned to the ITS Network Security objective domains
 - Original scenario-style practice questions based only on the Certiport objective topics
+- Separate 50-item Non-Certiport Practice tab with original general network-security questions
 - Randomized 50-item questionnaire per take
 - Immediate feedback and explanations after every answer
 - Final score plus missed-item review

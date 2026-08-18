@@ -55,6 +55,7 @@
       <button class="tab active" data-view="reviewer">Reviewer</button>
       <button class="tab" data-view="quiz">Questionnaire</button>
       <button class="tab" data-view="bank">Question bank</button>
+      <button class="tab" data-view="noncert">Non-Certiport practice</button>
     </nav>
 
     <section class="view active" id="reviewer">
@@ -113,6 +114,30 @@
         </label>
       </div>
       <div class="bank-list" id="bankList"></div>
+    </section>
+
+    <section class="view" id="noncert">
+      <div class="quiz-layout">
+        <aside class="quiz-status">
+          <h2>Non-Certiport practice</h2>
+          <p id="nonCertState">Start a 50-item practice take made from general public network-security study topics.</p>
+          <div class="meter" aria-label="Non-Certiport quiz progress"><span id="nonCertProgressBar"></span></div>
+          <div class="stats">
+            <div><strong id="nonCertCurrentNumber">0</strong><span>Current</span></div>
+            <div><strong id="nonCertScore">0</strong><span>Score</span></div>
+            <div><strong id="nonCertRemaining">50</strong><span>Left</span></div>
+          </div>
+          <button class="primary block" id="startNonCertQuiz">Start 50-item practice</button>
+        </aside>
+        <article class="question-card">
+          <p class="question-meta" id="nonCertMeta">General practice</p>
+          <h2 id="nonCertQuestionText">Ready when you are.</h2>
+          <div class="choices" id="nonCertChoices"></div>
+          <div class="feedback" id="nonCertFeedback" hidden></div>
+          <button class="primary" id="nonCertNextQuestion" hidden>Next question</button>
+          <div class="results" id="nonCertResults" hidden></div>
+        </article>
+      </div>
     </section>
   </main>
 

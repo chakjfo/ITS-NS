@@ -482,12 +482,69 @@ const examQuestions = [
 ];
 
 const activeQuestions = examQuestions;
+const nonCertQuestions = [
+  { c: "General Network Security", q: "Which device is commonly used to filter traffic between networks based on rules?", a: "Firewall", o: ["Firewall", "Hub", "Keyboard", "Patch cable"], e: "Firewalls permit or deny traffic based on security rules." },
+  { c: "General Network Security", q: "Which system alerts when suspicious network activity is detected but does not normally block traffic?", a: "IDS", o: ["IDS", "IPS", "NAT", "DHCP"], e: "An IDS detects and alerts; an IPS can block inline." },
+  { c: "General Network Security", q: "Which system can actively block malicious traffic inline?", a: "IPS", o: ["IPS", "IDS", "DNS", "NTP"], e: "An IPS is placed inline and can prevent detected attacks." },
+  { c: "General Network Security", q: "What does a VPN primarily provide over an untrusted network?", a: "Encrypted tunnel", o: ["Encrypted tunnel", "More RAM", "Open Wi-Fi", "Printer sharing"], e: "VPNs protect traffic by tunneling it securely." },
+  { c: "General Network Security", q: "Which VPN type is best for one remote employee connecting to headquarters?", a: "Remote access VPN", o: ["Remote access VPN", "Site-to-site VPN", "Open wireless", "Content filter"], e: "Remote access VPNs connect individual users to an organization." },
+  { c: "General Network Security", q: "Which VPN type connects two office networks together?", a: "Site-to-site VPN", o: ["Site-to-site VPN", "Remote access VPN", "Guest Wi-Fi", "Adware"], e: "Site-to-site VPNs link networks at different locations." },
+  { c: "General Network Security", q: "Which firewall inspection method remembers whether packets belong to an active conversation?", a: "Stateful inspection", o: ["Stateful inspection", "Stateless inspection", "Private browsing", "Full backup"], e: "Stateful inspection tracks connection state." },
+  { c: "General Network Security", q: "Which firewall inspection method evaluates each packet without remembering session state?", a: "Stateless inspection", o: ["Stateless inspection", "Stateful inspection", "Kerberos", "WPA3"], e: "Stateless filtering applies packet rules without session memory." },
+  { c: "General Network Security", q: "Which network zone commonly hosts public-facing servers while separating them from the internal LAN?", a: "DMZ", o: ["DMZ", "SSID", "TPM", "UAC"], e: "A DMZ isolates public services from internal systems." },
+  { c: "General Network Security", q: "What does NAT do?", a: "Translates private IP addresses to public addresses", o: ["Translates private IP addresses to public addresses", "Encrypts hard drives", "Blocks spam", "Stores passwords"], e: "NAT maps private internal addresses to routable addresses." },
+  { c: "General Network Security", q: "What does PAT add to NAT?", a: "Port tracking so many devices can share one public IP", o: ["Port tracking so many devices can share one public IP", "Antivirus signatures", "Wireless encryption only", "Browser history"], e: "PAT tracks ports to let multiple hosts share one public address." },
+  { c: "General Network Security", q: "Which concept means never automatically trusting traffic just because it is inside the network?", a: "Zero trust", o: ["Zero trust", "Default allow", "Open access", "Hub mode"], e: "Zero trust verifies access explicitly and assumes no implicit trust." },
+  { c: "General Network Security", q: "Which control separates departments into different logical networks?", a: "VLAN", o: ["VLAN", "HTTP", "Adware", "Cookie"], e: "VLANs provide logical segmentation." },
+  { c: "General Network Security", q: "What does a WAF mainly protect?", a: "Web applications", o: ["Web applications", "Keyboard input", "Laptop batteries", "Cable labels"], e: "A web application firewall filters application-layer web attacks." },
+  { c: "General Network Security", q: "Which attack attempts to overload a service so legitimate users cannot access it?", a: "Denial of service", o: ["Denial of service", "Hashing", "VLAN hopping", "Drive encryption"], e: "DoS attacks target availability." },
+  { c: "General Network Security", q: "Which attack uses many systems to flood a target at once?", a: "Distributed denial of service", o: ["Distributed denial of service", "Single sign-on", "DNSSEC", "SFTP"], e: "DDoS attacks use multiple sources against one target." },
+  { c: "General Network Security", q: "Which attack inserts malicious database commands through unsafe user input?", a: "SQL injection", o: ["SQL injection", "Spoofing", "SNMP", "Full backup"], e: "SQL injection abuses unsafe database query handling." },
+  { c: "General Network Security", q: "Which web attack injects scripts that run in another user's browser?", a: "Cross-site scripting", o: ["Cross-site scripting", "IPsec", "RDP", "MAC filtering"], e: "XSS runs malicious script in the victim browser context." },
+  { c: "General Network Security", q: "Which attack forges identity information to appear trusted?", a: "Spoofing", o: ["Spoofing", "Compression", "Formatting", "Patching"], e: "Spoofing falsifies identity information." },
+  { c: "General Network Security", q: "Which attack tricks users through fake messages or links?", a: "Phishing", o: ["Phishing", "Routing", "Hashing", "Whitelisting"], e: "Phishing is social engineering through deceptive messages." },
+  { c: "General Network Security", q: "Which malware records keystrokes?", a: "Keylogger", o: ["Keylogger", "Firewall", "VLAN", "Certificate"], e: "Keyloggers capture typed information, often passwords." },
+  { c: "General Network Security", q: "Which malware hides itself and may maintain privileged access?", a: "Rootkit", o: ["Rootkit", "Adware", "Cookie", "Router"], e: "Rootkits conceal malware and privileged access." },
+  { c: "General Network Security", q: "Which malware encrypts files and demands payment?", a: "Ransomware", o: ["Ransomware", "Spyware", "DNSSEC", "SFTP"], e: "Ransomware denies access and demands ransom." },
+  { c: "General Network Security", q: "Which malware spreads by itself across networks?", a: "Worm", o: ["Worm", "Trojan horse", "Adware", "Logic bomb"], e: "Worms self-propagate across systems." },
+  { c: "General Network Security", q: "Which malware pretends to be useful software?", a: "Trojan horse", o: ["Trojan horse", "Worm", "VLAN", "Proxy"], e: "Trojans rely on disguise to get executed." },
+  { c: "General Network Security", q: "Which wireless security mode should be avoided because it is weak?", a: "WEP", o: ["WEP", "WPA2", "WPA3", "802.1X"], e: "WEP is outdated and easily cracked." },
+  { c: "General Network Security", q: "Which wireless security mode is stronger and newer than WPA2-Personal?", a: "WPA3-Personal", o: ["WPA3-Personal", "WEP", "Open Wi-Fi", "Telnet"], e: "WPA3 improves Wi-Fi security over older modes." },
+  { c: "General Network Security", q: "What does SSID mean in wireless networking?", a: "Wireless network name", o: ["Wireless network name", "Firewall rule", "Password hash", "Mail protocol"], e: "The SSID is the Wi-Fi network name." },
+  { c: "General Network Security", q: "Which authentication method is common for enterprise Wi-Fi?", a: "802.1X", o: ["802.1X", "WEP only", "Anonymous access", "HTTP"], e: "802.1X is commonly used with enterprise authentication." },
+  { c: "General Network Security", q: "Which protocol securely replaces Telnet for remote administration?", a: "SSH", o: ["SSH", "FTP", "HTTP", "POP3"], e: "SSH encrypts remote administrative sessions." },
+  { c: "General Network Security", q: "Which protocol protects web traffic with TLS?", a: "HTTPS", o: ["HTTPS", "HTTP", "Telnet", "TFTP"], e: "HTTPS is HTTP protected by TLS." },
+  { c: "General Network Security", q: "Which service resolves domain names to IP addresses?", a: "DNS", o: ["DNS", "DHCP", "SMTP", "RDP"], e: "DNS translates names to addresses." },
+  { c: "General Network Security", q: "Which protocol automatically gives IP configuration to clients?", a: "DHCP", o: ["DHCP", "DNS", "SSH", "LDAP"], e: "DHCP assigns IP settings automatically." },
+  { c: "General Network Security", q: "Which protocol sends email between mail servers?", a: "SMTP", o: ["SMTP", "IMAP", "SNMP", "SMB"], e: "SMTP sends mail." },
+  { c: "General Network Security", q: "Which protocol is preferred for secure network management instead of older community-string versions?", a: "SNMPv3", o: ["SNMPv3", "SNMPv1", "Telnet", "FTP"], e: "SNMPv3 supports authentication and encryption." },
+  { c: "General Network Security", q: "Which port is commonly used by HTTPS?", a: "443", o: ["443", "80", "22", "3389"], e: "HTTPS commonly uses TCP 443." },
+  { c: "General Network Security", q: "Which port is commonly used by SSH?", a: "22", o: ["22", "23", "25", "53"], e: "SSH commonly uses TCP 22." },
+  { c: "General Network Security", q: "Which port is commonly used by DNS?", a: "53", o: ["53", "80", "110", "389"], e: "DNS commonly uses port 53." },
+  { c: "General Network Security", q: "Which port is commonly used by RDP?", a: "3389", o: ["3389", "443", "161", "636"], e: "RDP commonly uses TCP 3389." },
+  { c: "General Network Security", q: "Which port is commonly used by LDAP?", a: "389", o: ["389", "636", "22", "25"], e: "LDAP commonly uses port 389." },
+  { c: "General Network Security", q: "What does encryption mainly protect?", a: "Confidentiality", o: ["Confidentiality", "Cable length", "Screen resolution", "File size only"], e: "Encryption helps keep data unreadable to unauthorized parties." },
+  { c: "General Network Security", q: "What does hashing mainly verify?", a: "Integrity", o: ["Integrity", "Wireless range", "User age", "Port speed"], e: "Hashes help detect whether data has changed." },
+  { c: "General Network Security", q: "What does salting password hashes help prevent?", a: "Easy use of precomputed hash tables", o: ["Easy use of precomputed hash tables", "Firewall filtering", "DNS lookup", "VLAN tagging"], e: "Salts make identical passwords hash differently and reduce precomputed attacks." },
+  { c: "General Network Security", q: "Which control gives users only the permissions they need?", a: "Least privilege", o: ["Least privilege", "Open access", "Default permit", "Public sharing"], e: "Least privilege limits unnecessary access." },
+  { c: "General Network Security", q: "Which authentication control requires two or more factor types?", a: "MFA", o: ["MFA", "NAT", "DNS", "FTP"], e: "MFA combines factors such as password and device approval." },
+  { c: "General Network Security", q: "Which system collects and correlates logs from many sources?", a: "SIEM", o: ["SIEM", "DHCP", "WEP", "RDP"], e: "SIEM centralizes and correlates security events." },
+  { c: "General Network Security", q: "Which term means a normal behavior pattern used to spot unusual activity?", a: "Baseline", o: ["Baseline", "Backdoor", "Browser cache", "Packet loss"], e: "Baselines help detect deviations from normal activity." },
+  { c: "General Network Security", q: "Which practice checks that backups can actually be used?", a: "Test restoration", o: ["Test restoration", "Disable logging", "Open ports", "Hide SSID"], e: "Testing restores confirms backups are usable." },
+  { c: "General Network Security", q: "Which access model assigns permissions through job roles?", a: "RBAC", o: ["RBAC", "NAT", "DNSSEC", "WEP"], e: "Role-based access control grants permissions through roles." },
+  { c: "General Network Security", q: "Which security approach blocks everything unless specifically permitted?", a: "Default deny", o: ["Default deny", "Default allow", "Open relay", "Guest access"], e: "Default deny is safer because only approved traffic is allowed." }
+];
 const MAX_TAKE_SIZE = 50;
 let take = [];
 let current = 0;
 let score = 0;
 let answered = false;
 let missed = [];
+let nonCertTake = [];
+let nonCertCurrent = 0;
+let nonCertScoreValue = 0;
+let nonCertAnswered = false;
+let nonCertMissed = [];
 let selectedQuizCategory = "all";
 let currentTakeSize = Math.min(MAX_TAKE_SIZE, activeQuestions.length);
 
@@ -505,6 +562,17 @@ const nextQuestion = document.getElementById("nextQuestion");
 const results = document.getElementById("results");
 const themeToggle = document.getElementById("themeToggle");
 const downloadReviewer = document.getElementById("downloadReviewer");
+const nonCertState = document.getElementById("nonCertState");
+const nonCertProgressBar = document.getElementById("nonCertProgressBar");
+const nonCertCurrentNumber = document.getElementById("nonCertCurrentNumber");
+const nonCertScore = document.getElementById("nonCertScore");
+const nonCertRemaining = document.getElementById("nonCertRemaining");
+const nonCertMeta = document.getElementById("nonCertMeta");
+const nonCertQuestionText = document.getElementById("nonCertQuestionText");
+const nonCertChoices = document.getElementById("nonCertChoices");
+const nonCertFeedback = document.getElementById("nonCertFeedback");
+const nonCertNextQuestion = document.getElementById("nonCertNextQuestion");
+const nonCertResults = document.getElementById("nonCertResults");
 
 document.getElementById("bankCount").textContent = `${activeQuestions.length} likely exam questions`;
 
@@ -803,11 +871,97 @@ function finishTake() {
   `;
 }
 
+function startNonCertTake() {
+  nonCertTake = shuffle(nonCertQuestions).slice(0, MAX_TAKE_SIZE).map((item) => ({ ...item, choices: shuffle(item.o) }));
+  nonCertCurrent = 0;
+  nonCertScoreValue = 0;
+  nonCertMissed = [];
+  nonCertAnswered = false;
+  nonCertResults.hidden = true;
+  setView("noncert");
+  renderNonCertQuestion();
+}
+
+function updateNonCertStatus() {
+  nonCertCurrentNumber.textContent = nonCertTake.length ? Math.min(nonCertCurrent + 1, MAX_TAKE_SIZE) : 0;
+  nonCertScore.textContent = nonCertScoreValue;
+  nonCertRemaining.textContent = nonCertTake.length ? Math.max(MAX_TAKE_SIZE - nonCertCurrent - (nonCertAnswered ? 1 : 0), 0) : MAX_TAKE_SIZE;
+  nonCertState.textContent = nonCertTake.length
+    ? `Answering item ${Math.min(nonCertCurrent + 1, MAX_TAKE_SIZE)} of ${MAX_TAKE_SIZE}.`
+    : "Start a 50-item practice take made from general public network-security study topics.";
+  nonCertProgressBar.style.width = `${nonCertTake.length ? (nonCertCurrent / MAX_TAKE_SIZE) * 100 : 0}%`;
+}
+
+function renderNonCertQuestion() {
+  updateNonCertStatus();
+  nonCertFeedback.hidden = true;
+  nonCertNextQuestion.hidden = true;
+  nonCertAnswered = false;
+  nonCertResults.hidden = true;
+
+  const item = nonCertTake[nonCertCurrent];
+  if (!item) {
+    finishNonCertTake();
+    return;
+  }
+
+  nonCertQuestionText.textContent = item.q;
+  nonCertMeta.textContent = `${item.c} | Item ${nonCertCurrent + 1} of ${MAX_TAKE_SIZE}`;
+  nonCertChoices.innerHTML = item.choices.map((choice) => `
+    <button class="choice" data-choice="${choice}">${choice}</button>
+  `).join("");
+}
+
+function chooseNonCertAnswer(choiceButton) {
+  if (nonCertAnswered) return;
+  nonCertAnswered = true;
+  const item = nonCertTake[nonCertCurrent];
+  const selected = choiceButton.dataset.choice;
+  const correct = selected === item.a;
+
+  if (correct) nonCertScoreValue += 1;
+  else nonCertMissed.push(item);
+
+  nonCertChoices.querySelectorAll(".choice").forEach((button) => {
+    button.disabled = true;
+    if (button.dataset.choice === item.a) button.classList.add("correct");
+    if (button === choiceButton && !correct) button.classList.add("wrong");
+  });
+
+  nonCertFeedback.hidden = false;
+  nonCertFeedback.innerHTML = `<strong>${correct ? "Correct." : "Not quite."}</strong> ${item.e}`;
+  nonCertNextQuestion.hidden = false;
+  nonCertProgressBar.style.width = `${((nonCertCurrent + 1) / MAX_TAKE_SIZE) * 100}%`;
+  updateNonCertStatus();
+}
+
+function finishNonCertTake() {
+  nonCertQuestionText.textContent = "Practice complete.";
+  nonCertMeta.textContent = "Results";
+  nonCertChoices.innerHTML = "";
+  nonCertFeedback.hidden = true;
+  nonCertNextQuestion.hidden = true;
+  nonCertState.textContent = `Finished. You scored ${nonCertScoreValue} out of ${MAX_TAKE_SIZE}.`;
+  nonCertCurrentNumber.textContent = MAX_TAKE_SIZE;
+  nonCertRemaining.textContent = 0;
+  nonCertProgressBar.style.width = "100%";
+
+  const percent = Math.round((nonCertScoreValue / MAX_TAKE_SIZE) * 100);
+  const missedHtml = nonCertMissed.slice(0, 10).map((item) => `<li><strong>${item.q}</strong><br>${item.e}</li>`).join("");
+  nonCertResults.hidden = false;
+  nonCertResults.innerHTML = `
+    <h3>Your score: ${nonCertScoreValue}/${MAX_TAKE_SIZE} (${percent}%)</h3>
+    <p>${percent >= 80 ? "Strong work on the general network-security practice set." : "Review the missed items, then try another randomized set."}</p>
+    ${nonCertMissed.length ? `<h3>First missed items to review</h3><ol>${missedHtml}</ol>` : "<p>No missed items in this take.</p>"}
+  `;
+}
+
 tabs.forEach((tab) => tab.addEventListener("click", () => setView(tab.dataset.view)));
 document.getElementById("startQuiz").addEventListener("click", startTake);
 document.getElementById("restartQuiz").addEventListener("click", startTake);
 document.getElementById("showReviewer").addEventListener("click", () => setView("reviewer"));
 document.getElementById("showBank").addEventListener("click", () => setView("bank"));
+document.getElementById("startNonCertQuiz").addEventListener("click", startNonCertTake);
 quizCategory.addEventListener("change", () => {
   selectedQuizCategory = quizCategory.value;
   take = [];
@@ -838,6 +992,14 @@ nextQuestion.addEventListener("click", () => {
   current += 1;
   renderQuestion();
 });
+nonCertChoices.addEventListener("click", (event) => {
+  const button = event.target.closest(".choice");
+  if (button) chooseNonCertAnswer(button);
+});
+nonCertNextQuestion.addEventListener("click", () => {
+  nonCertCurrent += 1;
+  renderNonCertQuestion();
+});
 categoryFilter.addEventListener("change", renderBank);
 searchBank.addEventListener("input", renderBank);
 
@@ -846,3 +1008,4 @@ renderCategories();
 renderBank();
 applyTheme(localStorage.getItem("itsNsTheme") || "light");
 updateStatus();
+updateNonCertStatus();
