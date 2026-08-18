@@ -287,6 +287,78 @@ const reviewerTopics = [
   }
 ];
 
+const questionOptionGlossary = [
+  { term: "Adware", detail: "Software that displays unwanted advertisements. It may track browsing behavior or install with other unwanted programs." },
+  { term: "Antivirus software", detail: "Security software that detects, blocks, quarantines, or removes malware." },
+  { term: "ARP", detail: "Address Resolution Protocol maps an IPv4 address to a MAC address on a local network." },
+  { term: "Backdoor", detail: "A hidden way to access a system while bypassing normal authentication." },
+  { term: "BitLocker", detail: "Microsoft drive encryption that protects stored data, often with TPM support." },
+  { term: "Blacklisting", detail: "A filtering approach that blocks known bad or unwanted items." },
+  { term: "Brute force attack", detail: "An attack that repeatedly guesses passwords, PINs, or keys until one works." },
+  { term: "Confidentiality", detail: "Protects data from unauthorized viewing or disclosure." },
+  { term: "Content filtering", detail: "Allows or blocks web pages, files, or traffic based on category, content, or policy." },
+  { term: "Cross-site scripting", detail: "A web attack where malicious scripts run in another user's browser." },
+  { term: "Delegation", detail: "Giving another user or group limited authority to perform specific tasks without full administrator access." },
+  { term: "Differential backup", detail: "Copies data changed since the last full backup." },
+  { term: "DNS", detail: "Domain Name System resolves names, such as example.com, to IP addresses." },
+  { term: "DNSSEC", detail: "Adds digital signatures to DNS records so clients can verify DNS responses were not altered." },
+  { term: "Firewall", detail: "A control that permits or denies traffic based on rules." },
+  { term: "FTP", detail: "File Transfer Protocol, commonly on port 21. Traditional FTP is not encrypted." },
+  { term: "Full backup", detail: "Copies all selected data." },
+  { term: "gpresult", detail: "Windows command that shows which Group Policy settings apply to a user or computer." },
+  { term: "gpupdate", detail: "Windows command that refreshes Group Policy settings." },
+  { term: "Honeynet", detail: "A decoy network used to observe attacker behavior without exposing real production systems." },
+  { term: "HTTP", detail: "Unencrypted web traffic, commonly on port 80." },
+  { term: "HTTPS", detail: "Encrypted web traffic using TLS, commonly on port 443." },
+  { term: "IDS", detail: "Intrusion Detection System watches for suspicious activity and alerts." },
+  { term: "Incremental backup", detail: "Copies data changed since the last backup of any type." },
+  { term: "Inheritance", detail: "Child files or folders receiving permissions from a parent folder." },
+  { term: "Integrity", detail: "Protects data from unauthorized or accidental modification." },
+  { term: "IPsec", detail: "A suite of protocols that secures IP communications with authentication and encryption." },
+  { term: "IPS", detail: "Intrusion Prevention System can block suspicious traffic inline." },
+  { term: "Kerberos", detail: "Ticket-based authentication protocol commonly used in Windows domain environments." },
+  { term: "Keylogger", detail: "Malware or hardware that records keystrokes, often to steal passwords." },
+  { term: "LDAP", detail: "Directory access protocol commonly used for querying user and directory information." },
+  { term: "LDAPS", detail: "LDAP protected with TLS, commonly on port 636." },
+  { term: "Least privilege", detail: "Users receive only the access needed for their work." },
+  { term: "Logic bomb", detail: "Malicious code that activates when a condition is met, such as a date or event." },
+  { term: "MAC filtering", detail: "Allows or blocks devices by MAC address. It adds control but is not strong enough alone." },
+  { term: "Man-in-the-middle", detail: "An attack where someone intercepts or changes communication between two parties." },
+  { term: "Mantrap", detail: "A controlled physical entry area with two interlocking doors." },
+  { term: "MFA", detail: "Multifactor authentication uses more than one factor, such as password plus authenticator approval." },
+  { term: "NAT", detail: "Network Address Translation maps private addresses to public addresses." },
+  { term: "NAT/PAT", detail: "PAT lets many internal devices share one public IP by tracking different ports." },
+  { term: "Non-repudiation", detail: "Provides proof that an action happened and who performed it." },
+  { term: "Pharming", detail: "Redirects users to fraudulent websites, often by abusing DNS or host-file settings." },
+  { term: "Phishing", detail: "Tricks users into revealing information or taking unsafe actions through fake messages." },
+  { term: "Polymorphic virus", detail: "Malware that changes its code or appearance to avoid signature detection." },
+  { term: "Private key", detail: "The secret key in asymmetric cryptography. It must be protected." },
+  { term: "Public key", detail: "The shareable key in asymmetric cryptography." },
+  { term: "Ransomware", detail: "Malware that blocks or encrypts data and demands payment." },
+  { term: "RDP", detail: "Remote Desktop Protocol, commonly on port 3389." },
+  { term: "Rootkit", detail: "Malware that hides itself and may maintain privileged access." },
+  { term: "SFTP", detail: "Secure File Transfer Protocol over SSH." },
+  { term: "Share permissions", detail: "Permissions that control access to a shared folder over the network." },
+  { term: "SIEM", detail: "Security Information and Event Management collects and correlates logs and alerts." },
+  { term: "SMTP", detail: "Email sending protocol, commonly on port 25." },
+  { term: "SNMP", detail: "Network monitoring and management protocol, commonly on port 161." },
+  { term: "Spoofing", detail: "Faking identity information, such as an email sender, IP address, or website." },
+  { term: "Spyware", detail: "Malware that secretly monitors user activity or collects information." },
+  { term: "SQL injection", detail: "A web/database attack that inserts malicious SQL commands through unsafe input." },
+  { term: "SSH", detail: "Secure remote administration protocol, commonly on port 22." },
+  { term: "SSID", detail: "The visible or configured name of a wireless network." },
+  { term: "Telnet", detail: "Insecure remote command-line protocol, commonly on port 23. SSH should be used instead." },
+  { term: "TPM", detail: "Trusted Platform Module, a hardware component that helps protect cryptographic keys." },
+  { term: "UAC", detail: "User Account Control prompts before privileged Windows changes." },
+  { term: "VLAN", detail: "Virtual LAN, a logical network segment." },
+  { term: "VPN", detail: "Virtual Private Network creates an encrypted tunnel over an untrusted network." },
+  { term: "WEP", detail: "Old and weak Wi-Fi security method that should not be used." },
+  { term: "Whitelisting", detail: "Allows only approved items and blocks everything else by default." },
+  { term: "WPA2/WPA3", detail: "Modern Wi-Fi security modes stronger than WEP." },
+  { term: "XSS", detail: "Another name for cross-site scripting." },
+  { term: "Zero day", detail: "A vulnerability or attack before a fix is publicly available." }
+];
+
 const examQuestions = [
   { c: "1. Defense in Depth", q: "Which principle gives users only the access needed to perform their work?", a: "Principle of least privilege", o: ["Principle of least privilege", "Availability", "Port filtering", "Full backup"], e: "Least privilege is explicitly listed in the ITS Network Security objectives and reduces possible damage from misuse or compromise." },
   { c: "1. Defense in Depth", q: "Which security goal keeps data from being viewed by unauthorized users?", a: "Confidentiality", o: ["Confidentiality", "Availability", "Non-repudiation", "Delegation"], e: "Confidentiality protects information from unauthorized disclosure." },
@@ -445,6 +517,16 @@ function escapeHtml(value) {
 }
 
 function buildReviewerPrintDocument() {
+  const reviewerTerms = new Set(
+    reviewerTopics.flatMap((topic) =>
+      topic.sections.flatMap((section) =>
+        section.points.map((point) => (typeof point === "string" ? point : point.term).toLowerCase())
+      )
+    )
+  );
+  const extraGlossary = questionOptionGlossary
+    .filter((item) => !reviewerTerms.has(item.term.toLowerCase()))
+    .sort((a, b) => a.term.localeCompare(b.term));
   const content = reviewerTopics.map((topic) => `
     <section>
       <h2>${escapeHtml(topic.title)}</h2>
@@ -464,6 +546,10 @@ function buildReviewerPrintDocument() {
         </article>
       `).join("")}
     </section>
+  `).join("");
+  const glossary = extraGlossary.map((item) => `
+    <dt>${escapeHtml(item.term)}</dt>
+    <dd>${escapeHtml(item.detail)}</dd>
   `).join("");
 
   return `<!doctype html>
@@ -533,6 +619,11 @@ function buildReviewerPrintDocument() {
   <h1>ITS Network Security Reviewer</h1>
   <p class="subtitle">Searchable text study reviewer with definitions and short explanations.</p>
   ${content}
+  <section>
+    <h2>Question Option Glossary</h2>
+    <p class="subtitle">Extra real terms that appear as answer choices in the questionnaire.</p>
+    <dl>${glossary}</dl>
+  </section>
 </body>
 </html>`;
 }
