@@ -1657,7 +1657,7 @@ function finishNonCertTake() {
 }
 
 function startImportTake() {
-  importTake = [...importedGithubQuestions];
+  importTake = shuffle(importedGithubQuestions);
   importCurrent = 0;
   importScoreValue = 0;
   importMissed = [];
