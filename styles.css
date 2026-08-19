@@ -304,6 +304,11 @@ button:disabled { cursor: not-allowed; opacity: 0.65; }
   line-height: 1.45;
 }
 
+.choice.selected {
+  border-color: var(--accent);
+  background: var(--soft);
+}
+
 .choice.correct {
   border-color: var(--good);
   background: var(--correct-bg);
@@ -327,6 +332,100 @@ button:disabled { cursor: not-allowed; opacity: 0.65; }
   background: var(--warn-soft);
   border-radius: 8px;
   padding: 1rem;
+}
+
+.import-hint {
+  color: var(--muted);
+  margin: 0 0 0.7rem;
+}
+
+.import-stack {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.import-row {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.8rem;
+  background: var(--bg);
+}
+
+.import-row p {
+  margin: 0 0 0.65rem;
+  line-height: 1.45;
+}
+
+.import-row-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.import-row.correct-row {
+  border-color: var(--good);
+  background: var(--correct-bg);
+}
+
+.import-row.wrong-row {
+  border-color: var(--bad);
+  background: var(--wrong-bg);
+}
+
+.import-field {
+  display: grid;
+  gap: 0.35rem;
+  color: var(--muted);
+}
+
+.import-field select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.68rem 0.75rem;
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.import-match {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.import-match h3 {
+  margin: 0 0 0.65rem;
+  font-size: 1rem;
+}
+
+.import-drop {
+  width: 100%;
+  display: grid;
+  gap: 0.3rem;
+  text-align: left;
+  margin-bottom: 0.6rem;
+  min-height: 68px;
+}
+
+.import-drop span {
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.import-drop.filled span {
+  color: var(--ink);
+}
+
+.import-drop.correct, .correct-control {
+  border-color: var(--good) !important;
+  background: var(--correct-bg) !important;
+}
+
+.import-drop.wrong, .wrong-control {
+  border-color: var(--bad) !important;
+  background: var(--wrong-bg) !important;
 }
 
 .filters {

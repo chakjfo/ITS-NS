@@ -534,6 +534,689 @@ const nonCertQuestions = [
   { c: "General Network Security", q: "Which access model assigns permissions through job roles?", a: "RBAC", o: ["RBAC", "NAT", "DNSSEC", "WEP"], e: "Role-based access control grants permissions through roles." },
   { c: "General Network Security", q: "Which security approach blocks everything unless specifically permitted?", a: "Default deny", o: ["Default deny", "Default allow", "Open relay", "Guest access"], e: "Default deny is safer because only approved traffic is allowed." }
 ];
+const importedGithubQuestions = [
+  {
+    "id": 1,
+    "type": "single",
+    "text": "How does role separation improve server security?",
+    "options": [
+      "By installing applications on separate hard disks.",
+      "By physically separating high-security servers from other servers.",
+      "By enforcing the principle of least privilege.",
+      "By placing servers on separate VLANs."
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "Role separation improves security by enforcing the principle of least privilege — users and processes only get the minimum permissions needed."
+  },
+  {
+    "id": 2,
+    "type": "truefalse",
+    "text": "For each statement, select True or False.",
+    "statements": [
+      {
+        "text": "Because senior executives have rights to access sensitive data, they should use administrator accounts.",
+        "correct": false,
+        "explanation": "False. Executives should use standard accounts; admin rights are separate from data access rights."
+      },
+      {
+        "text": "One purpose of User Account Control (UAC) is to grant users the lowest level permissions required to complete their tasks.",
+        "correct": true,
+        "explanation": "True. UAC helps enforce least privilege by prompting for elevated permissions only when needed."
+      },
+      {
+        "text": "System administrators should use a standard user account when performing routine functions like reading emails and browsing the internet.",
+        "correct": true,
+        "explanation": "True. Admins should avoid using admin accounts for everyday tasks to reduce exposure."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "type": "dropdown",
+    "text": "The 'application.bat' file in the image (C:\\Apps\\application.bat) is currently on the [FILE SYSTEM] file system. [PERMISSION TYPE] permissions are currently being displayed for the 'application.bat' file.",
+    "answers": [
+      {
+        "label": "File system",
+        "correct": "NTFS",
+        "options": [
+          "NTFS",
+          "FAT32",
+          "exFAT",
+          "ReFS"
+        ]
+      },
+      {
+        "label": "Permission type",
+        "correct": "Everyone",
+        "options": [
+          "Administrators",
+          "Everyone",
+          "Users",
+          "SYSTEM"
+        ]
+      }
+    ],
+    "explanation": "The file is on an NTFS system (Windows permissions tab is only available on NTFS). The permissions shown are for the 'Everyone' group."
+  },
+  {
+    "id": 4,
+    "type": "match",
+    "text": "Move each policy description from the list on the left to the correct policy on the right.",
+    "items": [
+      "A policy that describes permissible behaviors on a computer network",
+      "A policy that grants or revokes permissions for an employee or a group of employees on a computer network",
+      "A policy that defines actions to take after an unexpected or uncommon event",
+      "A policy that defines the requirements to connect to a computer network from outside that network"
+    ],
+    "targets": [
+      {
+        "label": "Remote Access Policy",
+        "correct": "A policy that defines the requirements to connect to a computer network from outside that network"
+      },
+      {
+        "label": "Access Control Policy",
+        "correct": "A policy that grants or revokes permissions for an employee or a group of employees on a computer network"
+      },
+      {
+        "label": "Incident Response Policy",
+        "correct": "A policy that defines actions to take after an unexpected or uncommon event"
+      },
+      {
+        "label": "Acceptable Use Policy",
+        "correct": "A policy that describes permissible behaviors on a computer network"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "type": "single",
+    "text": "What is a user probably receiving if they get a large number of emails selling prescription medicine?",
+    "options": [
+      "Spam",
+      "Malware",
+      "Pharming mail",
+      "Spoofed mail"
+    ],
+    "correct": [
+      0
+    ],
+    "explanation": "Unsolicited bulk emails selling products like prescription drugs are classic spam."
+  },
+  {
+    "id": 6,
+    "type": "single",
+    "text": "You create a web server for your school. When users visit your site, they get a certificate error that says your site is not trusted. What should you do to fix this problem?",
+    "options": [
+      "Enable Public Keys on your website.",
+      "Use a digital signature.",
+      "Generate a certificate request.",
+      "Install a certificate from a trusted Certificate Authority (CA)."
+    ],
+    "correct": [
+      3
+    ],
+    "explanation": "A 'not trusted' error means the certificate isn't signed by a recognized CA. Installing a certificate from a trusted CA resolves this."
+  },
+  {
+    "id": 7,
+    "type": "single",
+    "text": "Creating MD5 hash for files is an example of ensuring what?",
+    "options": [
+      "Integrity",
+      "Availability",
+      "Confidentiality",
+      "Least privilege"
+    ],
+    "correct": [
+      0
+    ],
+    "explanation": "MD5 hashing verifies that files haven't been altered — this is the CIA triad concept of Integrity."
+  },
+  {
+    "id": 8,
+    "type": "single",
+    "text": "Which link is a valid secure link to the CompanyPro account management site?",
+    "options": [
+      "http://secure.companypro/SecureSignIn",
+      "http://VPN.VisitMe/logon.html",
+      "https://companypro/SecureSignIn/",
+      "http://VPN.VisitMe/SecureSignIn/"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "Only option C uses HTTPS (secure) and the correct companypro domain."
+  },
+  {
+    "id": 9,
+    "type": "truefalse",
+    "text": "For each statement, select True or False.",
+    "statements": [
+      {
+        "text": "To protect users from malicious browser pop-ups, you should set a default browser configuration that blocks untrusted pop-ups.",
+        "correct": true,
+        "explanation": "True. Blocking untrusted pop-ups in browser settings is a standard protection measure."
+      },
+      {
+        "text": "Pop-ups can display a realistic operating system or application error message.",
+        "correct": true,
+        "explanation": "True. Malicious pop-ups often mimic real OS/app errors to trick users."
+      },
+      {
+        "text": "Protecting users from untrusted pop-up applications is mostly a function of awareness.",
+        "correct": false,
+        "explanation": "False. It primarily relies on technical controls like pop-up blockers, not just awareness."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "type": "match",
+    "text": "Move each backup strategy to its recovery time description. (Strategy 1: Full backup every night. Strategy 2: Full + incremental Mon-Sat. Strategy 3: Full + differential Mon-Sat.)",
+    "items": [
+      "Strategy 1",
+      "Strategy 2",
+      "Strategy 3"
+    ],
+    "targets": [
+      {
+        "label": "Method with fastest data recovery time",
+        "correct": "Strategy 1"
+      },
+      {
+        "label": "Method with intermediate data recovery time",
+        "correct": "Strategy 3"
+      },
+      {
+        "label": "Method with slowest data recovery time",
+        "correct": "Strategy 2"
+      }
+    ],
+    "explanation": "Full backup nightly (S1) = fastest restore (one backup set). Differential (S3) = intermediate (full + one differential). Incremental (S2) = slowest (full + all incrementals)."
+  },
+  {
+    "id": 11,
+    "type": "single",
+    "text": "How should the certificate of a secure public web server on the internet be signed?",
+    "options": [
+      "By an enterprise certificate authority (CA)",
+      "By a public certificate authority (CA)",
+      "By using a 4096-bit key",
+      "By using a 1024-bit key"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "Public web servers need certificates from a publicly trusted CA so browsers recognize and trust them."
+  },
+  {
+    "id": 12,
+    "type": "single",
+    "text": "You need to implement a firewall that includes examining the origin of the data. Which type of firewall should you implement?",
+    "options": [
+      "Application layer",
+      "Stateful",
+      "Content filter",
+      "Network layer"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "A stateful firewall tracks the origin and state of connections, examining where data comes from."
+  },
+  {
+    "id": 13,
+    "type": "single",
+    "text": "What should you use to protect systems from buffer overflow errors?",
+    "options": [
+      "An Intruder Prevention System",
+      "Data Execution Prevention",
+      "Antivirus software",
+      "A proxy server"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "Data Execution Prevention (DEP) prevents code from running in memory regions not designated for execution, protecting against buffer overflow exploits."
+  },
+  {
+    "id": 14,
+    "type": "single",
+    "text": "Your anti-spam program is blocking emails from a particular sender. Your company needs to receive emails from this sender. What should you do?",
+    "options": [
+      "Add the email address to the whitelist.",
+      "List the sender's email address in DNS.",
+      "Accept RSS feeds from their domain.",
+      "Reconfigure the SMS Gateway."
+    ],
+    "correct": [
+      0
+    ],
+    "explanation": "Adding the sender to the whitelist (allowlist) tells the spam filter to allow their emails through."
+  },
+  {
+    "id": 15,
+    "type": "single",
+    "text": "Which networking protocol provides centralized authentication, authorization, and accounting?",
+    "options": [
+      "HTTPS",
+      "OpenID",
+      "RADIUS",
+      "SMTP"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "RADIUS (Remote Authentication Dial-In User Service) provides centralized AAA services."
+  },
+  {
+    "id": 16,
+    "type": "single",
+    "text": "You are an intern at Sunset Web. You help manage 1000 workstations. All the workstations are members of an Active Directory Domain. You need to push an application security patch to all workstations. What is the quickest method to do this?",
+    "options": [
+      "Local security policy",
+      "Logon script",
+      "Windows Update",
+      "Group policy"
+    ],
+    "correct": [
+      3
+    ],
+    "explanation": "Group Policy allows centralized deployment of software and patches to all domain-joined machines simultaneously."
+  },
+  {
+    "id": 17,
+    "type": "single",
+    "text": "You install a system-file checksum-verification application on your servers. What does this help to ensure?",
+    "options": [
+      "Confidentiality",
+      "Integrity",
+      "Accessibility",
+      "Availability"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "Checksum verification detects unauthorized changes to files, ensuring data Integrity."
+  },
+  {
+    "id": 18,
+    "type": "single",
+    "text": "Which type of password attack attempts to guess passwords by using a list of common passwords?",
+    "options": [
+      "Rainbow table",
+      "Brute force",
+      "Keylogger",
+      "Dictionary"
+    ],
+    "correct": [
+      3
+    ],
+    "explanation": "A dictionary attack uses a predefined list of common words and passwords to guess credentials."
+  },
+  {
+    "id": 19,
+    "type": "single",
+    "text": "Why should you implement a wireless intrusion prevention system?",
+    "options": [
+      "To prevent rogue wireless access points",
+      "To enforce SSID broadcasting",
+      "To prevent wireless interference",
+      "To detect wireless packet theft"
+    ],
+    "correct": [
+      0
+    ],
+    "explanation": "A wireless IPS detects and prevents unauthorized (rogue) access points from operating on the network."
+  },
+  {
+    "id": 20,
+    "type": "multi",
+    "text": "What are three major attack vectors that a social engineering hacker might use? (Choose 3.)",
+    "options": [
+      "Honeypot systems",
+      "Dumpster diving",
+      "Telephone",
+      "Firewall interface",
+      "Reverse social engineering"
+    ],
+    "correct": [
+      1,
+      2,
+      4
+    ],
+    "explanation": "Social engineering attack vectors include Dumpster diving (physical info gathering), Telephone (vishing), and Reverse social engineering (hacker poses as help desk)."
+  },
+  {
+    "id": 21,
+    "type": "truefalse",
+    "text": "For each statement, select True or False.",
+    "statements": [
+      {
+        "text": "You can view audit logs in the Event Viewer.",
+        "correct": true,
+        "explanation": "True. Windows Event Viewer is the standard tool for viewing audit/security logs."
+      },
+      {
+        "text": "Audit logs have a set size limit and cannot be adjusted.",
+        "correct": false,
+        "explanation": "False. Audit log size limits can be configured in Event Viewer properties."
+      },
+      {
+        "text": "You can configure an event notification for an audited activity.",
+        "correct": true,
+        "explanation": "True. You can set up alerts/notifications for specific audited events."
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "type": "multi",
+    "text": "Which two vulnerabilities is a wireless network client exposed to? (Choose 2.)",
+    "options": [
+      "File corruption",
+      "Rogue access points",
+      "Eavesdropping",
+      "Buffer overflow"
+    ],
+    "correct": [
+      1,
+      2
+    ],
+    "explanation": "Wireless clients are exposed to rogue access points (fake APs stealing credentials) and eavesdropping (intercepting unencrypted traffic)."
+  },
+  {
+    "id": 23,
+    "type": "multi",
+    "text": "Which two strategies will help keep your devices free from viruses and malware? (Choose 2.)",
+    "options": [
+      "Keep antivirus and anti-malware software definitions are up to date.",
+      "Ensure that the Windows Firewall is disabled so it doesn't interfere with any anti-malware software scans.",
+      "Ensure that all network ports are available so all important network traffic can get through.",
+      "Ensure that Real-time Protection is disabled.",
+      "Configure full antivirus and anti-malware scans to run automatically on a regular schedule."
+    ],
+    "correct": [
+      0,
+      4
+    ],
+    "explanation": "Keeping definitions updated and scheduling regular automatic scans are the two key strategies for malware protection."
+  },
+  {
+    "id": 24,
+    "type": "single",
+    "text": "Your organization has a Windows Bring Your Own Device (BYOD) policy that includes ensuring that all devices are protected against various malware attacks. Where should you go on the local device to verify and configure the appropriate settings?",
+    "options": [
+      "Device Performance and Health",
+      "Account Protection",
+      "Virus & Threat Protection",
+      "User Account Control"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "Virus & Threat Protection in Windows Security is where you configure and verify malware protection settings."
+  },
+  {
+    "id": 25,
+    "type": "single",
+    "text": "What is an example of physical security for a laptop?",
+    "options": [
+      "Fingerprint reader",
+      "Cable lock",
+      "Docking station",
+      "External USB drive"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "A cable lock physically secures the laptop to a desk or fixture — that is physical security."
+  },
+  {
+    "id": 26,
+    "type": "single",
+    "text": "Which term refers to a physical opportunity that a hacker might use to look for information about a computer network?",
+    "options": [
+      "Reverse social engineering",
+      "Phishing",
+      "Dumpster diving",
+      "Malware"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "Dumpster diving is searching through physical trash for discarded documents with sensitive information."
+  },
+  {
+    "id": 27,
+    "type": "single",
+    "text": "You are a network administrator. All computers run the Chrome browser. You need to prevent third-party cookies from being saved. What should you enforce?",
+    "options": [
+      "Antivirus protection",
+      "Cross-Site Scripting Filter",
+      "Incognito",
+      "SmartScreen Filter"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "Chrome's Incognito mode does not save cookies, preventing third-party cookie storage."
+  },
+  {
+    "id": 28,
+    "type": "single",
+    "text": "What can intercept passwords that are transmitted in clear text?",
+    "options": [
+      "A Kerberos client",
+      "A rogue DHCP server",
+      "An IPsec decoder",
+      "A packet sniffer"
+    ],
+    "correct": [
+      3
+    ],
+    "explanation": "A packet sniffer captures network traffic including cleartext credentials like unencrypted passwords."
+  },
+  {
+    "id": 29,
+    "type": "single",
+    "text": "The client computers on your network are stable and do not need any new features. What is a benefit of applying operating system updates to these clients?",
+    "options": [
+      "Update the hardware firewall.",
+      "Keep the software licensed.",
+      "Close existing vulnerabilities.",
+      "Keep the server ports available."
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "Even without new features, OS updates patch security vulnerabilities and close exploitable gaps."
+  },
+  {
+    "id": 30,
+    "type": "single",
+    "text": "You need to hide internal IP addresses from the internet while maintaining client internet access. What should you implement?",
+    "options": [
+      "Secure Sockets Layer (SSL)",
+      "Access Control Lists",
+      "Network Address Translation (NAT)",
+      "Port forwarding"
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "NAT translates private internal IP addresses to a public IP, hiding the internal network from the internet."
+  },
+  {
+    "id": 31,
+    "type": "single",
+    "text": "You have two servers that run Windows Server. All the server drives have been formatted by using NTFS. You move a file from one server to the other server. What permissions does the file have in the new location?",
+    "options": [
+      "The file retains the original folder's permissions.",
+      "Access will be limited to members of the Administrators group.",
+      "The file inherits the destination folder's permissions.",
+      "Members of the Everyone group will have full access to the file."
+    ],
+    "correct": [
+      2
+    ],
+    "explanation": "When moving a file between NTFS volumes, the file inherits the permissions of the destination folder."
+  },
+  {
+    "id": 32,
+    "type": "order",
+    "text": "You have an off-domain computer suspected of malware infection. You need to ensure the computer is completely safe and user files are available. Place actions in correct order.",
+    "items": [
+      "Reinstall the OS and applications from the original media.",
+      "Update everything, including the OS, applications, and anti-virus/anti-malware tools.",
+      "Restore the user data from the backup image.",
+      "Reformat the disk.",
+      "Back up the entire system."
+    ],
+    "correct": [
+      "Back up the entire system.",
+      "Reformat the disk.",
+      "Reinstall the OS and applications from the original media.",
+      "Update everything, including the OS, applications, and anti-virus/anti-malware tools.",
+      "Restore the user data from the backup image."
+    ],
+    "explanation": "Correct order: 1) Back up, 2) Reformat, 3) Reinstall OS/apps, 4) Update everything, 5) Restore user data."
+  },
+  {
+    "id": 33,
+    "type": "single",
+    "text": "What is the first step when conducting a physical security audit?",
+    "options": [
+      "Inventory the company's technology assets.",
+      "Set up the system logs to audit security events.",
+      "Set up a virus quarantine area.",
+      "Install auditing software on your servers."
+    ],
+    "correct": [
+      0
+    ],
+    "explanation": "The first step in a physical security audit is to inventory all technology assets so you know what needs to be secured."
+  },
+  {
+    "id": 34,
+    "type": "single",
+    "text": "Which technology examines packet header information to determine whether network traffic is allowed to enter the internal network?",
+    "options": [
+      "Dedicated firewall",
+      "RADIUS server",
+      "BitLocker To Go",
+      "Antivirus software"
+    ],
+    "correct": [
+      0
+    ],
+    "explanation": "A dedicated firewall inspects packet headers to allow or block traffic based on defined rules."
+  },
+  {
+    "id": 35,
+    "type": "multi",
+    "text": "What are two benefits to using an incremental backup solution instead of a differential backup solution? (Choose 2.)",
+    "options": [
+      "Less storage space required",
+      "Less time needed to back up data",
+      "Less administrative effort",
+      "Less time needed to recover data"
+    ],
+    "correct": [
+      0,
+      1
+    ],
+    "explanation": "Incremental backups only back up changes since the last backup (of any type), using less storage and less backup time than differential backups."
+  },
+  {
+    "id": 36,
+    "type": "truefalse",
+    "text": "For each statement, select True or False.",
+    "statements": [
+      {
+        "text": "IPsec requires network applications to be IPsec aware.",
+        "correct": false,
+        "explanation": "False. IPsec works at the network layer transparently — applications don't need to be IPsec aware."
+      },
+      {
+        "text": "IPsec can encrypt data.",
+        "correct": true,
+        "explanation": "True. IPsec provides encryption through ESP (Encapsulating Security Payload)."
+      },
+      {
+        "text": "IPsec adds overhead for all network communications for which it is used.",
+        "correct": true,
+        "explanation": "True. Encryption and authentication processing adds overhead to communications."
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "type": "multi",
+    "text": "What are three examples of two-factor authentication? (Choose 3.)",
+    "options": [
+      "A username and a password",
+      "A password and a PIN number",
+      "A fingerprint and a pattern",
+      "A password and a smart card",
+      "A PIN number and a debit card"
+    ],
+    "correct": [
+      2,
+      3,
+      4
+    ],
+    "explanation": "2FA requires two different factor types. C: biometric + something you know. D: something you know + something you have. E: something you know + something you have."
+  },
+  {
+    "id": 38,
+    "type": "single",
+    "text": "You learn that several employees have downloaded and installed a browser extension that translates text. What should you do?",
+    "options": [
+      "Disable the browser extension and implement controls to allow only corporate-approved browser extensions.",
+      "Make sure the browser extension is set to read-only mode, so it cannot overwrite critical information.",
+      "Remove the browser extension because it will perform malicious activities.",
+      "Nothing, browser extensions pose no harm to the machine or the user."
+    ],
+    "correct": [
+      0
+    ],
+    "explanation": "Proper security practice is to disable unauthorized extensions and enforce a policy allowing only approved browser extensions."
+  },
+  {
+    "id": 39,
+    "type": "single",
+    "text": "You have an application that uses IPsec to secure communications between an internet client and a server on the internal network. To which network security service must the IPsec client connect?",
+    "options": [
+      "SFTP",
+      "VPN",
+      "SSH",
+      "RADIUS"
+    ],
+    "correct": [
+      1
+    ],
+    "explanation": "IPsec is commonly used within VPN connections. The client connects to a VPN gateway to establish the IPsec tunnel."
+  },
+  {
+    "id": 40,
+    "type": "single",
+    "text": "Your manager wants to be sure that you understand the types of social engineering threats that might occur. Which type of threat mitigation educates the staff within an organization, explaining what to do, when, why, and by whom?",
+    "options": [
+      "Acceptable Use Policy",
+      "Physical Security",
+      "Defense in Depth",
+      "Policies, Procedures, and Awareness"
+    ],
+    "correct": [
+      3
+    ],
+    "explanation": "Policies, Procedures, and Awareness programs educate staff on security threats and proper responses."
+  }
+];
+
 const MAX_TAKE_SIZE = 50;
 let take = [];
 let current = 0;
@@ -545,6 +1228,12 @@ let nonCertCurrent = 0;
 let nonCertScoreValue = 0;
 let nonCertAnswered = false;
 let nonCertMissed = [];
+let importTake = [];
+let importCurrent = 0;
+let importScoreValue = 0;
+let importAnswered = false;
+let importMissed = [];
+let importStateData = {};
 let selectedQuizCategory = "all";
 let currentTakeSize = Math.min(MAX_TAKE_SIZE, activeQuestions.length);
 
@@ -573,6 +1262,17 @@ const nonCertChoices = document.getElementById("nonCertChoices");
 const nonCertFeedback = document.getElementById("nonCertFeedback");
 const nonCertNextQuestion = document.getElementById("nonCertNextQuestion");
 const nonCertResults = document.getElementById("nonCertResults");
+const importStateText = document.getElementById("importState");
+const importProgressBar = document.getElementById("importProgressBar");
+const importCurrentNumber = document.getElementById("importCurrentNumber");
+const importScore = document.getElementById("importScore");
+const importRemaining = document.getElementById("importRemaining");
+const importMeta = document.getElementById("importMeta");
+const importQuestionText = document.getElementById("importQuestionText");
+const importChoices = document.getElementById("importChoices");
+const importFeedback = document.getElementById("importFeedback");
+const importNextQuestion = document.getElementById("importNextQuestion");
+const importResults = document.getElementById("importResults");
 
 document.getElementById("bankCount").textContent = `${activeQuestions.length} likely exam questions`;
 
@@ -956,12 +1656,353 @@ function finishNonCertTake() {
   `;
 }
 
+function startImportTake() {
+  importTake = [...importedGithubQuestions];
+  importCurrent = 0;
+  importScoreValue = 0;
+  importMissed = [];
+  importAnswered = false;
+  importStateData = {};
+  importResults.hidden = true;
+  setView("githubimport");
+  renderImportQuestion();
+}
+
+function importTypeLabel(type) {
+  const labels = {
+    single: "Single choice",
+    multi: "Choose multiple",
+    truefalse: "True/False group",
+    match: "Matching",
+    order: "Ordering",
+    dropdown: "Dropdown"
+  };
+  return labels[type] || "Imported question";
+}
+
+function updateImportStatus() {
+  const total = importedGithubQuestions.length;
+  importCurrentNumber.textContent = importTake.length ? Math.min(importCurrent + 1, total) : 0;
+  importScore.textContent = importScoreValue;
+  importRemaining.textContent = importTake.length ? Math.max(total - importCurrent - (importAnswered ? 1 : 0), 0) : total;
+  importStateText.textContent = importTake.length
+    ? `Answering item ${Math.min(importCurrent + 1, total)} of ${total}.`
+    : `Start a questionnaire with all ${total} imported mixed-format questions.`;
+  importProgressBar.style.width = `${importTake.length ? (importCurrent / total) * 100 : 0}%`;
+}
+
+function renderImportQuestion() {
+  updateImportStatus();
+  importFeedback.hidden = true;
+  importNextQuestion.hidden = true;
+  importAnswered = false;
+  importResults.hidden = true;
+  importStateData = {};
+
+  const item = importTake[importCurrent];
+  if (!item) {
+    finishImportTake();
+    return;
+  }
+
+  importQuestionText.textContent = item.text;
+  importMeta.textContent = `${importTypeLabel(item.type)} | Item ${importCurrent + 1} of ${importedGithubQuestions.length}`;
+  importChoices.innerHTML = renderImportBody(item);
+}
+
+function renderImportBody(item) {
+  if (item.type === "single" || item.type === "multi") {
+    const hint = item.type === "multi" ? `<p class="import-hint">Choose all correct answers, then check.</p>` : "";
+    const options = item.options.map((option, index) => `
+      <button class="choice import-choice" data-import-action="${item.type === "single" ? "single" : "multi"}" data-index="${index}">
+        <span class="choice-letter">${String.fromCharCode(65 + index)}</span>
+        <span>${escapeHtml(option)}</span>
+      </button>
+    `).join("");
+    const check = item.type === "multi" ? `<button class="primary" data-import-action="check-multi">Check answer</button>` : "";
+    return `${hint}<div class="choices">${options}</div>${check}`;
+  }
+
+  if (item.type === "truefalse") {
+    return `
+      <div class="import-stack">
+        ${item.statements.map((statement, index) => `
+          <div class="import-row" data-statement="${index}">
+            <p>${escapeHtml(statement.text)}</p>
+            <div class="import-row-actions">
+              <button data-import-action="tf" data-index="${index}" data-value="true">True</button>
+              <button data-import-action="tf" data-index="${index}" data-value="false">False</button>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+      <button class="primary" data-import-action="check-tf">Check answer</button>
+    `;
+  }
+
+  if (item.type === "dropdown") {
+    return `
+      <div class="import-stack">
+        ${item.answers.map((answer, index) => `
+          <label class="import-field">
+            ${escapeHtml(answer.label)}
+            <select data-dropdown="${index}">
+              <option value="">Select an answer</option>
+              ${answer.options.map((option) => `<option value="${escapeHtml(option)}">${escapeHtml(option)}</option>`).join("")}
+            </select>
+          </label>
+        `).join("")}
+      </div>
+      <button class="primary" data-import-action="check-dropdown">Check answer</button>
+    `;
+  }
+
+  if (item.type === "match") {
+    return `
+      <div class="import-match">
+        <div>
+          <h3>Descriptions</h3>
+          ${item.items.map((entry, index) => `
+            <button class="choice import-choice" data-import-action="match-source" data-index="${index}">${escapeHtml(entry)}</button>
+          `).join("")}
+        </div>
+        <div>
+          <h3>Policies / Categories</h3>
+          ${item.targets.map((target, index) => `
+            <button class="import-drop" data-import-action="match-target" data-index="${index}">
+              <strong>${escapeHtml(target.label)}</strong>
+              <span>Click a description, then this box</span>
+            </button>
+          `).join("")}
+        </div>
+      </div>
+      <button class="primary" data-import-action="check-match">Check answer</button>
+    `;
+  }
+
+  if (item.type === "order") {
+    return `
+      <div class="import-match">
+        <div>
+          <h3>Actions</h3>
+          ${item.items.map((entry, index) => `
+            <button class="choice import-choice" data-import-action="order-source" data-index="${index}">${escapeHtml(entry)}</button>
+          `).join("")}
+        </div>
+        <div>
+          <h3>Actions in order</h3>
+          ${item.correct.map((_, index) => `
+            <button class="import-drop" data-import-action="order-slot" data-index="${index}">
+              <strong>Step ${index + 1}</strong>
+              <span>Click an action, then this slot</span>
+            </button>
+          `).join("")}
+        </div>
+      </div>
+      <button class="primary" data-import-action="check-order">Check answer</button>
+    `;
+  }
+
+  return `<p>This imported question type is not supported yet.</p>`;
+}
+
+function handleImportClick(event) {
+  const control = event.target.closest("[data-import-action]");
+  if (!control || importAnswered) return;
+  const action = control.dataset.importAction;
+  const item = importTake[importCurrent];
+
+  if (action === "single") {
+    checkImportSingle(Number(control.dataset.index));
+  } else if (action === "multi") {
+    toggleImportMulti(control);
+  } else if (action === "check-multi") {
+    checkImportMulti();
+  } else if (action === "tf") {
+    selectImportTrueFalse(control);
+  } else if (action === "check-tf") {
+    checkImportTrueFalse();
+  } else if (action === "check-dropdown") {
+    checkImportDropdown();
+  } else if (action === "match-source") {
+    selectImportSource(control, "matchSelected");
+  } else if (action === "match-target") {
+    placeImportMatch(control, item);
+  } else if (action === "check-match") {
+    checkImportMatch();
+  } else if (action === "order-source") {
+    selectImportSource(control, "orderSelected");
+  } else if (action === "order-slot") {
+    placeImportOrder(control, item);
+  } else if (action === "check-order") {
+    checkImportOrder();
+  }
+}
+
+function lockImportControls() {
+  importChoices.querySelectorAll("button, select").forEach((control) => {
+    control.disabled = true;
+  });
+}
+
+function completeImportQuestion(isCorrect, explanation) {
+  importAnswered = true;
+  if (isCorrect) importScoreValue += 1;
+  else importMissed.push(importTake[importCurrent]);
+  lockImportControls();
+  importFeedback.hidden = false;
+  importFeedback.innerHTML = `<strong>${isCorrect ? "Correct." : "Not quite."}</strong> ${escapeHtml(explanation || "Review the highlighted answer.")}`;
+  importNextQuestion.hidden = false;
+  importProgressBar.style.width = `${((importCurrent + 1) / importedGithubQuestions.length) * 100}%`;
+  updateImportStatus();
+}
+
+function checkImportSingle(index) {
+  const item = importTake[importCurrent];
+  const isCorrect = item.correct.includes(index);
+  importChoices.querySelectorAll(".import-choice").forEach((button) => {
+    const optionIndex = Number(button.dataset.index);
+    if (item.correct.includes(optionIndex)) button.classList.add("correct");
+    if (optionIndex === index && !isCorrect) button.classList.add("wrong");
+  });
+  completeImportQuestion(isCorrect, item.explanation);
+}
+
+function toggleImportMulti(button) {
+  button.classList.toggle("selected");
+}
+
+function checkImportMulti() {
+  const item = importTake[importCurrent];
+  const selected = [...importChoices.querySelectorAll('.import-choice.selected')].map((button) => Number(button.dataset.index));
+  const correct = [...item.correct].sort((a, b) => a - b);
+  const selectedSorted = selected.sort((a, b) => a - b);
+  const isCorrect = correct.length === selectedSorted.length && correct.every((value, index) => value === selectedSorted[index]);
+  importChoices.querySelectorAll(".import-choice").forEach((button) => {
+    const optionIndex = Number(button.dataset.index);
+    if (item.correct.includes(optionIndex)) button.classList.add("correct");
+    if (selectedSorted.includes(optionIndex) && !item.correct.includes(optionIndex)) button.classList.add("wrong");
+  });
+  completeImportQuestion(isCorrect, item.explanation);
+}
+
+function selectImportTrueFalse(button) {
+  const row = button.closest(".import-row");
+  row.querySelectorAll("button").forEach((entry) => entry.classList.remove("selected"));
+  button.classList.add("selected");
+  importStateData[`tf-${button.dataset.index}`] = button.dataset.value === "true";
+}
+
+function checkImportTrueFalse() {
+  const item = importTake[importCurrent];
+  const isComplete = item.statements.every((_, index) => Object.hasOwn(importStateData, `tf-${index}`));
+  if (!isComplete) {
+    importFeedback.hidden = false;
+    importFeedback.innerHTML = "<strong>Almost.</strong> Answer every True/False row first.";
+    return;
+  }
+  const isCorrect = item.statements.every((statement, index) => importStateData[`tf-${index}`] === statement.correct);
+  item.statements.forEach((statement, index) => {
+    const row = importChoices.querySelector(`[data-statement="${index}"]`);
+    row.classList.add(importStateData[`tf-${index}`] === statement.correct ? "correct-row" : "wrong-row");
+  });
+  completeImportQuestion(isCorrect, item.statements.map((statement) => statement.explanation).join(" "));
+}
+
+function checkImportDropdown() {
+  const item = importTake[importCurrent];
+  const isCorrect = item.answers.every((answer, index) => {
+    const select = importChoices.querySelector(`[data-dropdown="${index}"]`);
+    const correct = select.value === answer.correct;
+    select.classList.add(correct ? "correct-control" : "wrong-control");
+    return correct;
+  });
+  completeImportQuestion(isCorrect, item.explanation);
+}
+
+function selectImportSource(button, key) {
+  importChoices.querySelectorAll(`[data-import-action="${button.dataset.importAction}"]`).forEach((entry) => entry.classList.remove("selected"));
+  button.classList.add("selected");
+  importStateData[key] = Number(button.dataset.index);
+}
+
+function placeImportMatch(button, item) {
+  if (!Object.hasOwn(importStateData, "matchSelected")) return;
+  const targetIndex = Number(button.dataset.index);
+  const sourceIndex = importStateData.matchSelected;
+  importStateData[`match-${targetIndex}`] = sourceIndex;
+  button.querySelector("span").textContent = item.items[sourceIndex];
+  button.classList.add("filled");
+}
+
+function checkImportMatch() {
+  const item = importTake[importCurrent];
+  const isComplete = item.targets.every((_, index) => Object.hasOwn(importStateData, `match-${index}`));
+  if (!isComplete) {
+    importFeedback.hidden = false;
+    importFeedback.innerHTML = "<strong>Almost.</strong> Fill every matching box first.";
+    return;
+  }
+  const isCorrect = item.targets.every((target, index) => item.items[importStateData[`match-${index}`]] === target.correct);
+  item.targets.forEach((target, index) => {
+    const drop = importChoices.querySelector(`[data-import-action="match-target"][data-index="${index}"]`);
+    drop.classList.add(item.items[importStateData[`match-${index}`]] === target.correct ? "correct" : "wrong");
+  });
+  completeImportQuestion(isCorrect, item.explanation || "Review the highlighted matches.");
+}
+
+function placeImportOrder(button, item) {
+  if (!Object.hasOwn(importStateData, "orderSelected")) return;
+  const slotIndex = Number(button.dataset.index);
+  const sourceIndex = importStateData.orderSelected;
+  importStateData[`order-${slotIndex}`] = sourceIndex;
+  button.querySelector("span").textContent = item.items[sourceIndex];
+  button.classList.add("filled");
+}
+
+function checkImportOrder() {
+  const item = importTake[importCurrent];
+  const isComplete = item.correct.every((_, index) => Object.hasOwn(importStateData, `order-${index}`));
+  if (!isComplete) {
+    importFeedback.hidden = false;
+    importFeedback.innerHTML = "<strong>Almost.</strong> Fill every order slot first.";
+    return;
+  }
+  const isCorrect = item.correct.every((expected, index) => item.items[importStateData[`order-${index}`]] === expected);
+  item.correct.forEach((expected, index) => {
+    const drop = importChoices.querySelector(`[data-import-action="order-slot"][data-index="${index}"]`);
+    drop.classList.add(item.items[importStateData[`order-${index}`]] === expected ? "correct" : "wrong");
+  });
+  completeImportQuestion(isCorrect, item.explanation);
+}
+
+function finishImportTake() {
+  importQuestionText.textContent = "Imported questionnaire complete.";
+  importMeta.textContent = "Results";
+  importChoices.innerHTML = "";
+  importFeedback.hidden = true;
+  importNextQuestion.hidden = true;
+  importStateText.textContent = `Finished. You scored ${importScoreValue} out of ${importedGithubQuestions.length}.`;
+  importCurrentNumber.textContent = importedGithubQuestions.length;
+  importRemaining.textContent = 0;
+  importProgressBar.style.width = "100%";
+  const percent = Math.round((importScoreValue / importedGithubQuestions.length) * 100);
+  const missedHtml = importMissed.slice(0, 10).map((item) => `<li><strong>${escapeHtml(item.text)}</strong><br>${escapeHtml(item.explanation || "Review this imported item.")}</li>`).join("");
+  importResults.hidden = false;
+  importResults.innerHTML = `
+    <h3>Your score: ${importScoreValue}/${importedGithubQuestions.length} (${percent}%)</h3>
+    <p>${percent >= 80 ? "Strong work on the imported mixed-format set." : "Review the missed imported items, then try again."}</p>
+    ${importMissed.length ? `<h3>First missed items to review</h3><ol>${missedHtml}</ol>` : "<p>No missed items in this take.</p>"}
+  `;
+}
+
 tabs.forEach((tab) => tab.addEventListener("click", () => setView(tab.dataset.view)));
 document.getElementById("startQuiz").addEventListener("click", startTake);
 document.getElementById("restartQuiz").addEventListener("click", startTake);
 document.getElementById("showReviewer").addEventListener("click", () => setView("reviewer"));
 document.getElementById("showBank").addEventListener("click", () => setView("bank"));
 document.getElementById("startNonCertQuiz").addEventListener("click", startNonCertTake);
+document.getElementById("startImportQuiz").addEventListener("click", startImportTake);
 quizCategory.addEventListener("change", () => {
   selectedQuizCategory = quizCategory.value;
   take = [];
@@ -1000,6 +2041,11 @@ nonCertNextQuestion.addEventListener("click", () => {
   nonCertCurrent += 1;
   renderNonCertQuestion();
 });
+importChoices.addEventListener("click", handleImportClick);
+importNextQuestion.addEventListener("click", () => {
+  importCurrent += 1;
+  renderImportQuestion();
+});
 categoryFilter.addEventListener("change", renderBank);
 searchBank.addEventListener("input", renderBank);
 
@@ -1009,3 +2055,4 @@ renderBank();
 applyTheme(localStorage.getItem("itsNsTheme") || "light");
 updateStatus();
 updateNonCertStatus();
+updateImportStatus();

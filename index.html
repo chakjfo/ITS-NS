@@ -56,6 +56,7 @@
       <button class="tab" data-view="quiz">Questionnaire</button>
       <button class="tab" data-view="bank">Question bank</button>
       <button class="tab" data-view="noncert">Non-Certiport practice</button>
+      <button class="tab" data-view="githubimport">GitHub import</button>
     </nav>
 
     <section class="view active" id="reviewer">
@@ -136,6 +137,30 @@
           <div class="feedback" id="nonCertFeedback" hidden></div>
           <button class="primary" id="nonCertNextQuestion" hidden>Next question</button>
           <div class="results" id="nonCertResults" hidden></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" id="githubimport">
+      <div class="quiz-layout">
+        <aside class="quiz-status">
+          <h2>GitHub imported questions</h2>
+          <p id="importState">Start a questionnaire made from your other GitHub file, preserving the original mixed formats.</p>
+          <div class="meter" aria-label="GitHub imported quiz progress"><span id="importProgressBar"></span></div>
+          <div class="stats">
+            <div><strong id="importCurrentNumber">0</strong><span>Current</span></div>
+            <div><strong id="importScore">0</strong><span>Score</span></div>
+            <div><strong id="importRemaining">0</strong><span>Left</span></div>
+          </div>
+          <button class="primary block" id="startImportQuiz">Start mixed-format questionnaire</button>
+        </aside>
+        <article class="question-card">
+          <p class="question-meta" id="importMeta">GitHub import</p>
+          <h2 id="importQuestionText">Ready when you are.</h2>
+          <div class="choices" id="importChoices"></div>
+          <div class="feedback" id="importFeedback" hidden></div>
+          <button class="primary" id="importNextQuestion" hidden>Next question</button>
+          <div class="results" id="importResults" hidden></div>
         </article>
       </div>
     </section>
