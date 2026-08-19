@@ -1730,8 +1730,8 @@ function renderImportBody(item) {
           <div class="import-row" data-statement="${index}">
             <p>${escapeHtml(statement.text)}</p>
             <div class="import-row-actions">
-              <button data-import-action="tf" data-index="${index}" data-value="true">True</button>
-              <button data-import-action="tf" data-index="${index}" data-value="false">False</button>
+              <button class="import-tf-btn" data-import-action="tf" data-index="${index}" data-value="true" aria-pressed="false">True</button>
+              <button class="import-tf-btn" data-import-action="tf" data-index="${index}" data-value="false" aria-pressed="false">False</button>
             </div>
           </div>
         `).join("")}
@@ -1888,14 +1888,19 @@ function checkImportMulti() {
 
 function selectImportTrueFalse(button) {
   const row = button.closest(".import-row");
-  row.querySelectorAll("button").forEach((entry) => entry.classList.remove("selected"));
+  row.querySelectorAll("button").forEach((entry) => {
+    entry.classList.remove("selected");
+    entry.setAttribute("aria-pressed", "false");
+  });
   button.classList.add("selected");
+  button.setAttribute("aria-pressed", "true");
   importStateData[`tf-${button.dataset.index}`] = button.dataset.value === "true";
 }
 
 function checkImportTrueFalse() {
   const item = importTake[importCurrent];
-  const isComplete = item.statements.every((_, index) => Object.hasOwn(importStateData, `tf-${index}`));
+  const hasAnswer = (index) => Object.prototype.hasOwnProperty.call(importStateData, `tf-${index}`);
+  const isComplete = item.statements.every((_, index) => hasAnswer(index));
   if (!isComplete) {
     importFeedback.hidden = false;
     importFeedback.innerHTML = "<strong>Almost.</strong> Answer every True/False row first.";
@@ -1904,7 +1909,14 @@ function checkImportTrueFalse() {
   const isCorrect = item.statements.every((statement, index) => importStateData[`tf-${index}`] === statement.correct);
   item.statements.forEach((statement, index) => {
     const row = importChoices.querySelector(`[data-statement="${index}"]`);
-    row.classList.add(importStateData[`tf-${index}`] === statement.correct ? "correct-row" : "wrong-row");
+    const selectedValue = importStateData[`tf-${index}`];
+    const rowCorrect = selectedValue === statement.correct;
+    row.classList.add(rowCorrect ? "correct-row" : "wrong-row");
+    row.querySelectorAll(".import-tf-btn").forEach((button) => {
+      const value = button.dataset.value === "true";
+      if (value === statement.correct) button.classList.add("correct");
+      if (value === selectedValue && !rowCorrect) button.classList.add("wrong");
+    });
   });
   completeImportQuestion(isCorrect, item.statements.map((statement) => statement.explanation).join(" "));
 }

@@ -363,6 +363,22 @@ button:disabled { cursor: not-allowed; opacity: 0.65; }
   flex-wrap: wrap;
 }
 
+.import-tf-btn.selected {
+  border-color: var(--accent);
+  background: var(--soft);
+  color: var(--ink);
+}
+
+.import-tf-btn.correct {
+  border-color: var(--good);
+  background: var(--correct-bg);
+}
+
+.import-tf-btn.wrong {
+  border-color: var(--bad);
+  background: var(--wrong-bg);
+}
+
 .import-row.correct-row {
   border-color: var(--good);
   background: var(--correct-bg);
